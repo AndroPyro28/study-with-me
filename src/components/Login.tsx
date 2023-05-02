@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import { TypeOf, object, string } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
@@ -7,6 +7,7 @@ import { contentForm } from "~/types/IndexcontentForm";
 import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
+import Cookie from 'js-cookie'
 
 const initialValues = {
   email: "",
@@ -27,7 +28,6 @@ interface Props {
 
 const Login = ( {handleChangeContent} : Props) => {
 
-  const utils = api.useContext();
   const router = useRouter()
   const { mutate, error, isLoading } = api.auth.login.useMutation({
 
@@ -35,6 +35,11 @@ const Login = ( {handleChangeContent} : Props) => {
       toast( err.message, {type: 'error'})
     },
     onSuccess(data) {
+      const { token } = data;
+      Cookie.set('userToken', token, {
+        secure: true,
+        expires: 1
+      })
       toast('Successful', {type: 'success'})
     },
   })

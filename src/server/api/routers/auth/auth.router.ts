@@ -4,6 +4,7 @@ import { contactFormSchemaLogin } from "~/components/Login";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { Argoncompare, Argonhash } from "~/server/helper/Argon.helper";
 import { TRPCError } from "@trpc/server";
+import { assignToken } from "~/server/helper/Jwt.helper";
 // import { login, signup } from "./auth.controller";
 
 export const authRouter = createTRPCRouter({
@@ -41,7 +42,12 @@ export const authRouter = createTRPCRouter({
     if(!isMatch) {
       throw new TRPCError({code: 'FORBIDDEN', message: 'Invalid Credentials'})
     }
+    
+    const token = assignToken(user.id);
 
-    return user;
+    return {
+      user,
+      token
+    };
   }),
 });
