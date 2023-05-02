@@ -3,10 +3,10 @@ import { Formik, Form, Field } from "formik";
 import { TypeOf, object, string } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import styles from './style.module.css'
-import { contentForm } from "~/types/IndexcontentForm";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import { useRouter } from 'next/router'
+import Loader from "./Loader";
 const initialValues = {
   firstname: "",
   lastname: "",
@@ -45,7 +45,7 @@ export const contactFormSchemaSignup = object({
 type ContactFormInputs = TypeOf<typeof contactFormSchemaSignup>;
 
 interface Props {
-  handleChangeContent: (content: contentForm) => void
+  handleChangeContent: (content: 'login' | 'signup') => void
 }
 
 const Signup = ({handleChangeContent}: Props) => {
@@ -194,7 +194,10 @@ const Signup = ({handleChangeContent}: Props) => {
               </div>
               </div>
               <span className=" text-gray-900 cursor-pointer" onClick={() => handleChangeContent('login')}>Already have an account? Login</span>
-              <button className=" border text-white px-5 py-2 rounded-md w-full bg-slate-700 mt-5 hover:bg-slate-500">Submit</button>
+              <button disabled={isLoading} className="
+              border text-white px-5 py-2 rounded-md w-full bg-slate-700 mt-5 hover:bg-slate-500
+               disabled:bg-slate-400
+              "> { isLoading ? <Loader size={20} /> : 'Signup' } </button>
               
             </Form>
           );

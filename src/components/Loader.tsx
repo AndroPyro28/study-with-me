@@ -6,7 +6,7 @@ type Props = {
 }
 const Loader = ({size}: Props) => {
   return (
-    <div className=" absolute bottom-0 left-0 right-0 top-0 flex h-screen w-screen items-center justify-center">
+    <div className="flex items-center justify-center">
       <div role="status">
         <svg
           aria-hidden="true"

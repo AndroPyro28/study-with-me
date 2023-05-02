@@ -3,11 +3,11 @@ import { Formik, Form, Field } from "formik";
 import { TypeOf, object, string } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import styles from './style.module.css'
-import { contentForm } from "~/types/IndexcontentForm";
 import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import Cookie from 'js-cookie'
+import Loader from "./Loader";
 
 const initialValues = {
   email: "",
@@ -23,7 +23,7 @@ export const contactFormSchemaLogin = object({
 type ContactFormInputs = TypeOf<typeof contactFormSchemaLogin>;
 
 interface Props {
-    handleChangeContent: (content: contentForm) => void
+    handleChangeContent: (content: 'login' | 'signup') => void
 }
 
 const Login = ( {handleChangeContent} : Props) => {
@@ -40,7 +40,7 @@ const Login = ( {handleChangeContent} : Props) => {
         secure: true,
         expires: 1
       })
-      toast('Successful', {type: 'success'})
+      toast('Successful', {type: 'success'});
     },
   })
 
@@ -100,7 +100,10 @@ const Login = ( {handleChangeContent} : Props) => {
               </div>
                 <span className="text-gray-900 cursor-pointer" onClick={() => handleChangeContent('signup')}>Don't have an account? Signup</span>
 
-              <button className=" border text-white px-5 py-2 rounded-md w-full bg-slate-700 mt-5 hover:bg-slate-500">Submit</button>
+              <button disabled={isLoading} className="
+              border text-white px-5 py-2 rounded-md w-full bg-slate-700 mt-5 hover:bg-slate-500
+               disabled:bg-slate-400
+              "> { isLoading ? <Loader size={20} /> : 'Login' } </button>
               
             </Form>
           );
