@@ -9,5 +9,5 @@ return jwt.sign({id}, `${process.env.NEXT_JWTSECRET}`, {
 };
 
 export const verifyToken = (token: string) => {
-  return jwt.verify(token, `${process.env.NEXT_JWTSECRET}`);
+  return jwt.verify(token, `${process.env.NEXT_JWTSECRET}`) as {id: number, iat: number, exp: number};
 };
