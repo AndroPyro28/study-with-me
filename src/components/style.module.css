@@ -1,0 +1,5 @@
+
+.form {
+    @apply text-white max-h-full  bg-white px-5 py-7 rounded-xl;
+    width: 30vw;
+}
