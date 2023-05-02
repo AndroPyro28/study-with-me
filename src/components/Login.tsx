@@ -27,8 +27,8 @@ interface Props {
 }
 
 const Login = ( {handleChangeContent} : Props) => {
-
   const router = useRouter()
+
   const { mutate, error, isLoading } = api.auth.login.useMutation({
 
     onError(err, newPost, ctx) {
@@ -41,6 +41,7 @@ const Login = ( {handleChangeContent} : Props) => {
         expires: 1
       })
       toast('Successful', {type: 'success'});
+      router.replace('/about')
     },
   })
 

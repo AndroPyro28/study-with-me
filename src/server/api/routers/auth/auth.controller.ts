@@ -23,5 +23,4 @@ export const login = async ({ input, ctx }: any ) => {
         email,
       },
     });
-
   }

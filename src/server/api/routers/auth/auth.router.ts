@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { contactFormSchemaSignup } from "~/components/Signup";
 import { contactFormSchemaLogin } from "~/components/Login";
-import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import { createTRPCRouter, privateProcedure, publicProcedure } from "~/server/api/trpc";
 import { Argoncompare, Argonhash } from "~/server/helper/Argon.helper";
 import { TRPCError } from "@trpc/server";
 import { assignToken } from "~/server/helper/Jwt.helper";
@@ -50,4 +50,8 @@ export const authRouter = createTRPCRouter({
       token
     };
   }),
+
+  getMe: privateProcedure.input(z.string()).query(async ({ctx}) => {
+    return ctx.currentUser
+  })
 });
