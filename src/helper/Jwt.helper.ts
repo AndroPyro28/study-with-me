@@ -1,3 +1,4 @@
+import { TRPCError } from '@trpc/server';
 import jwt from 'jsonwebtoken'
 import { env } from "~/env.mjs";
 
@@ -9,5 +10,12 @@ return jwt.sign({id}, `${process.env.NEXT_JWTSECRET}`, {
 };
 
 export const verifyToken = (token: string) => {
-  return jwt.verify(token, `${process.env.NEXT_JWTSECRET}`) as {id: number, iat: number, exp: number};
+  try {
+    return jwt.verify(token, `${process.env.NEXT_JWTSECRET}`) as {id: number, iat: number, exp: number};
+  } catch (error) {
+    throw new TRPCError({
+      code: 'UNAUTHORIZED',
+      message: 'Not Authorized'
+    })
+  }
 };

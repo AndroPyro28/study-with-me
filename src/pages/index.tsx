@@ -17,7 +17,7 @@ const Home: NextPage = () => {
   
   const contentPage = content === 'login' ? <Login handleChangeContent={handleChangeContent as changeContent }  /> : <Signup handleChangeContent={handleChangeContent as changeContent} />
   return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#53D1E0] to-[#0C5DB8]">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#53D1E0] to-[#0C5DB8] ">
         {contentPage}
       </main>
   );

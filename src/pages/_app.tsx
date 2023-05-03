@@ -3,8 +3,11 @@ import Head from "next/head";
 import { ToastContainer } from "react-toastify";
 import { api } from "~/utils/api";
 import "react-toastify/dist/ReactToastify.css";
-
+import store from "../app/store";
+import { Provider } from "react-redux";
 import "~/styles/globals.css";
+import AppWrapper from "~/components/AppWrapper";
+import useAuth from "~/hooks/useAuth";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
@@ -15,7 +18,11 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ToastContainer autoClose={2500} />
-      <Component {...pageProps} />;
+      <Provider store={store}>
+        <AppWrapper>
+          <Component {...pageProps} />
+        </AppWrapper>
+      </Provider>
     </>
   );
 };

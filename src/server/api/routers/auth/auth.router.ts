@@ -38,6 +38,7 @@ export const authRouter = createTRPCRouter({
   }),
 
   getMe: privateProcedure.query(async ({ctx}) => {
+    ctx.currentUser = {...ctx.currentUser, password: ''}
     return ctx.currentUser
   })
 });

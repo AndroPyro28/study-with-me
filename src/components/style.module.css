@@ -1,5 +1,21 @@
 
 .form {
-    @apply text-white max-h-full  bg-white px-5 py-7 rounded-xl;
-    width: 30vw;
+    @apply text-white max-h-full  bg-white px-5 py-7 rounded-xl w-[30vw];
+}
+
+.navlinks {
+    @apply flex h-full flex-1 items-center justify-end gap-3 pr-5
+}
+.navlinks > a {
+    @apply w-[5em]
+}
+
+.navlinks > a:hover {
+    @apply bg-white text-black;
+    transition: all .3s ease-in-out;
+}
+
+.addNoteModal {
+    @apply w-[100vw] h-[100vh]  fixed top-0 left-0;
+    background: rgba(0, 0, 0, 0.74);
 }
