@@ -42,7 +42,7 @@ export const contactFormSchemaSignup = object({
         path: ["confirmPassword"],
     });;
 
-type ContactFormInputs = TypeOf<typeof contactFormSchemaSignup>;
+export type ContactFormInputs = TypeOf<typeof contactFormSchemaSignup>;
 
 interface Props {
   handleChangeContent: (content: 'login' | 'signup') => void

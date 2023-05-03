@@ -1,4 +1,4 @@
-import { Argonhash } from "~/server/helper/Argon.helper";
+import { Argonhash } from "~/helper/Argon.helper";
 
 export const signup = async ({ input, ctx }: any) => {
     const { password, email, firstname, lastname, username  } = input;

@@ -5,5 +5,4 @@ export const SignupDto = z.object({
     authorId: z.string()
 })
 
-
 export type SignupSchema = z.infer<typeof SignupDto>;

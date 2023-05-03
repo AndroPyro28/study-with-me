@@ -65,7 +65,7 @@ export const createTRPCContext = async (_opts: CreateNextContextOptions) => {
 import { TRPCError, initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
-import { verifyToken } from "../helper/Jwt.helper";
+import { verifyToken } from "../../helper/Jwt.helper";
 import { clearConfigCache } from "prettier";
 import { lchown } from "fs";
 
@@ -106,37 +106,28 @@ export const createTRPCRouter = t.router;
  */
 export const publicProcedure = t.procedure;
 
+import { findUserById } from "~/models/";
+
 export const authHandler = t.middleware(async ({ctx, next}) => {
 
   try {
     const {req} = ctx;
     const { headers } = req
-    
     const token = headers.cookie?.split('userToken=Bearer%20')[1]?? '';
-
     const {id} = verifyToken(token)
 
-    const user = await prisma.user.findUnique({
-      where: {
-        id
-      },
-      include: {
-        profile: true
-      }
-    });
+    const user = await findUserById(id);
 
     if(!user) throw new TRPCError({
       code: 'UNAUTHORIZED',
       message: 'Not Authenticated'
     })
-
     return next({
       ctx: {
         prisma: ctx.prisma,
         currentUser: user
       }
     })
-
   } catch (error) {
     throw new TRPCError({
       code: 'UNAUTHORIZED',
