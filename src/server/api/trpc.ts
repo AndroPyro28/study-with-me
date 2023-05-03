@@ -43,31 +43,17 @@ type CreateContextOptions = Record<string, never>;
  * @see https://trpc.io/docs/context
  */
 export const createTRPCContext = async (_opts: CreateNextContextOptions) => {
-  try {
-    const str =  _opts.req.query.input + '' ?? false
-    const token = JSON.parse(str)[0].json;
 
-    const payload = verifyToken(token + '');
-    const currentUser = await prisma.user.findUnique({
-      where: {
-        id: payload.id
-      },
-      include: {
-        profile: true
-      }
-    })
+    const { req, res } = _opts
+    
     return {
       prisma,
-      currentUser
+      req,
+      res
     }
-  } catch (error) {
-    return {
-      prisma
-    }
-  }
+}
     
   // return createInnerTRPCContext({});
-};
 
 /**
  * 2. INITIALIZATION
@@ -122,18 +108,44 @@ export const publicProcedure = t.procedure;
 
 export const authHandler = t.middleware(async ({ctx, next}) => {
 
-  const {currentUser} = ctx;
+ 
 
-  if(!ctx.currentUser) {
-    throw new TRPCError({code: 'UNAUTHORIZED', message: 'Not Authenticated'})
+  try {
+    const {req} = ctx;
+
+    const { headers } = req
+    
+    const token = headers.cookie?.split('userToken=')[1] ?? '';
+
+    const {id} = verifyToken(token)
+    const user = await prisma.user.findUnique({
+      where: {
+        id
+      },
+      include: {
+        profile: true
+      }
+    });
+
+    if(!user) throw new TRPCError({
+      code: 'UNAUTHORIZED',
+      message: 'Not Authenticated'
+    })
+
+    return next({
+      ctx: {
+        prisma: ctx.prisma,
+        currentUser: user
+        // currentUser
+      }
+    })
+
+  } catch (error) {
+    throw new TRPCError({
+      code: 'UNAUTHORIZED',
+      message: 'Not Authenticated'
+    })
   }
-
-  return next({
-    ctx: {
-      prisma: ctx.prisma,
-      currentUser
-    }
-  });
 })
 
 export const privateProcedure = t.procedure.use(authHandler)
