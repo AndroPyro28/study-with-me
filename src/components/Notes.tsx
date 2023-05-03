@@ -1,0 +1,60 @@
+import React, { useState } from "react";
+import AddNoteModal from "./AddNoteModal";
+import { api } from "~/utils/api";
+import { Reviewer } from "@prisma/client";
+import DateTimeFormatter from "~/helper/DateTimeFormatter.helper";
+import Loader from "./Loader";
+
+interface Props {
+  openAddReviewerModal: boolean,
+  handler: () => void 
+}
+const Notes = ({handler, openAddReviewerModal}: Props) => {
+
+  const {data, isLoading, isFetched, isError } = api.reviewer.getAllReviewer.useQuery();
+  const NoteTableHeader = (
+    <div className="flex justify-evenly text-white">
+      <div className="flex-1 bg-gray-600 p-5 text-center">Reviewer ID</div>
+      <div className="flex-1 bg-gray-600 p-5 text-center">Topic Title</div>
+      <div className="flex-1 bg-gray-600 p-5 text-center">File type</div>
+      <div className="flex-1 bg-gray-600 p-5 text-center">Time Left</div>
+      <div className="flex-1 bg-gray-600 p-5 text-center">Date Created</div>
+
+    </div>
+  );
+
+  type NoteTableDataProps = {
+    data: Reviewer
+  }
+
+  const NoteTableData = ({data}: NoteTableDataProps) => {
+    const {time, date } = DateTimeFormatter(data?.createdAt + '')
+    const {title, time_limit, image_url, id } = data;
+    const ext = image_url?.split('.')[3];
+
+    return <div className="flex justify-evenly text-white">
+      <div className="flex-1 bg-gray-200 p-5 text-center text-gray-800">{id}</div>
+      <div className="flex-1 bg-gray-200 p-5 text-center text-gray-800">{title}</div>
+      <div className="flex-1 bg-gray-200 p-5 text-center text-gray-800">{ext ? ext?.toUpperCase(): 'NONE'}</div>
+      <div className="flex-1 bg-gray-200 p-5 text-center text-gray-800">{time_limit}</div>
+      <div className="flex-1 bg-gray-200 p-5 text-center text-gray-800">{date} {time}</div>
+    </div>
+  }
+
+  const fetchReviewerList = data?.map((reviewer) =>  <NoteTableData data={reviewer}  />)
+  let content;
+
+  if(isLoading && !isFetched) content = <Loader size={20} />
+  if(!isLoading && isError) content = <div>Something went wrong...</div>
+  if(!isLoading && isFetched) content = <>{fetchReviewerList?.length! > 0 ? fetchReviewerList : <div className="text-center m-10 text-xl font-bold">No reviewers yet</div>}</>
+
+  return (
+    <div className=" mt-[20px] flex h-52  flex-col rounded-md border bg-white w-[50vw]">
+        {openAddReviewerModal && <AddNoteModal handler={handler} />}
+        {NoteTableHeader}
+        {content}
+    </div>
+  );
+};
+
+export default Notes;
