@@ -27,7 +27,6 @@ interface Props {
 
 const Login = ( {handleChangeContent} : Props) => {
   const router = useRouter()
-
   const { mutate, isLoading } = api.auth.login.useMutation({
     onError(err) {
       toast( err.message, {type: 'error'})
@@ -35,7 +34,7 @@ const Login = ( {handleChangeContent} : Props) => {
     onSuccess(data) {
       const { token } = data;
 
-      Cookie.set('userToken', token, {
+      Cookie.set('userToken', `Bearer ${token}`, {
         secure: true,
         expires: 1
       })

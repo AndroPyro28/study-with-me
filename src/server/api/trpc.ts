@@ -108,16 +108,14 @@ export const publicProcedure = t.procedure;
 
 export const authHandler = t.middleware(async ({ctx, next}) => {
 
- 
-
   try {
     const {req} = ctx;
-
     const { headers } = req
     
-    const token = headers.cookie?.split('userToken=')[1] ?? '';
+    const token = headers.cookie?.split('userToken=Bearer%20')[1]?? '';
 
     const {id} = verifyToken(token)
+
     const user = await prisma.user.findUnique({
       where: {
         id
@@ -136,7 +134,6 @@ export const authHandler = t.middleware(async ({ctx, next}) => {
       ctx: {
         prisma: ctx.prisma,
         currentUser: user
-        // currentUser
       }
     })
 
