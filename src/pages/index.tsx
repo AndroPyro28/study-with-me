@@ -4,10 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 import Login from "~/components/Login";
 import Signup from "~/components/Signup";
+import useReverseAuth from "~/hooks/useReverseAuth";
 import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
-
+  const data = useReverseAuth()
   const [content, setContent] = useState<'login' | 'signup'>('login')
   
   const handleChangeContent = (content: 'login' | 'signup') => {
@@ -17,7 +18,7 @@ const Home: NextPage = () => {
   
   const contentPage = content === 'login' ? <Login handleChangeContent={handleChangeContent as changeContent }  /> : <Signup handleChangeContent={handleChangeContent as changeContent} />
   return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#53D1E0] to-[#0C5DB8] ">
+      <main className="flex min-h-screen flex-col items-center justify-center">
         {contentPage}
       </main>
   );
