@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import "~/styles/globals.css";
 import AppWrapper from "~/components/AppWrapper";
 import useAuth from "~/hooks/useAuth";
-
+import 'react-quill/dist/quill.snow.css';
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <>

@@ -19,3 +19,18 @@
     @apply w-[100vw] h-[100vh]  fixed top-0 left-0;
     background: rgba(0, 0, 0, 0.74);
 }
+
+.textNoteContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    flex: 2;
+    height: 100%;
+    margin-top: -50px;
+}
+
+.textNoteContent > .content {
+        height:200px;
+        overflow: hidden;
+}

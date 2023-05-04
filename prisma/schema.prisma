@@ -40,7 +40,7 @@ model Reviewer {
     image_url String?
     image_id String?
     notes     String?  @db.LongText
-    time_limit String @default("2h")
+    time_limit String   @default("7200")
     userId    Int
     user      User    @relation(fields: [userId], references: [id])
     createdAt DateTime   @default(now())

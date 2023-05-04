@@ -11,10 +11,11 @@ const index = () => {
   const handleReviewerModal = () => {
     setOpenAddReviewerModal(prev => !prev)
   }
+
   return (
     <div className="flex flex-col items-center">
-      <div className=" flex items-center justify-center rounded-md border-2 bg-white text-gray-900 px-5 py-2 cursor-pointer w-fit  self-end m-5">
-        <FontAwesomeIcon icon={faNoteSticky} className="w-10 h-10" /> <span className="text-3xl" onClick={handleReviewerModal}> &nbsp;Add reviewer </span>
+      <div className=" flex items-center justify-center rounded-md border-2 bg-white text-gray-900 px-5 py-2 cursor-pointer w-fit  self-end m-5 " onClick={handleReviewerModal}>
+        <FontAwesomeIcon icon={faNoteSticky} className="w-10 h-10" /> <span className="text-3xl" > &nbsp;Add reviewer </span>
       </div>
       <Notes openAddReviewerModal={openAddReviewerModal} handler={handleReviewerModal} />
     </div>

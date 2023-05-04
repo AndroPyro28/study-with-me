@@ -8,6 +8,7 @@ import { toFormikValidationSchema } from "zod-formik-adapter";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import axios from "axios";
+import Loader from "./Loader";
 
 const initialValues = {
   title: "",
@@ -31,7 +32,7 @@ type Props = {
 }
 const AddNoteModal = ({handler}: Props) => {
   const context = api.useContext()
-  const {mutate} = api.reviewer.createReviewer.useMutation({
+  const {mutate, isLoading} = api.reviewer.createReviewer.useMutation({
     onError() {
       toast('Something went wrong...')
     },
@@ -42,7 +43,7 @@ const AddNoteModal = ({handler}: Props) => {
     
   })
 
-  const onSubmit = async (values: NoteTypeInput) => {
+  const onSubmit = async (values: NoteTypeInput, {resetForm}: any) => {
     if(values.file) {
       const formData = new FormData();
       formData.append("file", values.file as any);
@@ -54,7 +55,7 @@ const AddNoteModal = ({handler}: Props) => {
       values.image_id = res.data.public_id;
     }
     mutate(values)
-
+    resetForm(initialValues)
   };
 
   return (
@@ -139,8 +140,8 @@ const AddNoteModal = ({handler}: Props) => {
                   </div>{" "}
                 </div>
 
-                <button className="w-full border border-black px-[35px] py-[10px]" type="submit" value={'submit'}>
-                  Create{" "}
+                <button className="w-full border border-black px-[35px] py-[10px] rounded-md hover:bg-slate-200" type="submit" value={'submit'} disabled={isLoading}>
+                  {isLoading ? <Loader size={20} /> : 'Create'}
                 </button>
               </div>
             </Form>

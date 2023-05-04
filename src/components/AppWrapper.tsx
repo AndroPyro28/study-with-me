@@ -4,16 +4,20 @@ import Loader from "./Loader";
 import { setLoader } from "~/app/features/loaderSlice";
 import useAuth from "~/hooks/useAuth";
 import NavLinks from "./NavLinks";
+import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 // #region component
 interface Props {
   children: any;
 }
 const AppWrapper = ({ children }: Props) => {
   const data = useAuth();
-
+  const excludedRoutes = ['/study-notes/[reviewerId]']
+  const {pathname} = useRouter();
+  console.log(pathname)
   return (
     <div className="">
-      {data && <NavLinks />}
+      {data && !excludedRoutes.includes(pathname) && <NavLinks />}
       {children}
     </div>
   );

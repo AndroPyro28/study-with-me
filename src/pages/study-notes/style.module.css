@@ -1,2 +1,4 @@
-
-
+.reviewer {
+    @apply flex items-start h-screen w-screen;
+    background: rgba(0, 0, 0, 0.747);
+}

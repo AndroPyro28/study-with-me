@@ -1,9 +1,10 @@
 import { api } from '~/utils/api';
 import { useRouter} from 'next/router'
 
-const useAuth = () => {
+const useReverseAuth = () => {
     const router = useRouter();
     const {data, isError, isLoading} = api.auth.getMe.useQuery(undefined, {
+        
         retry: (_count, err) => {
           // `onError` only runs once React Query stops retrying
           if (err.data?.code === "UNAUTHORIZED") {
@@ -11,14 +12,12 @@ const useAuth = () => {
           }
           return true;
         },
-        onError: (err) => {
-          if (err.data?.code === "UNAUTHORIZED") {
-            void router.push('/');
-          }
-        }
+        onSuccess: (data) => {
+            void router.replace('/study-notes')
+        },
     })
 
     return data
 }
 
-export default useAuth;
+export default useReverseAuth;

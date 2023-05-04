@@ -8,12 +8,11 @@
 
 body {
     @apply bg-gradient-to-b from-[#53D1E0] to-[#0C5DB8] h-[100vh];
-    background-image: url('/assets/bg3.jpg');
+    background-image: url('/assets/bg4.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     backdrop-filter: blur(3px);
-    background-blend-mode: darken;
     height: 100vh;
     width: 100vw;
     overflow-x: hidden;
