@@ -34,12 +34,18 @@ const Notes = ({handler, openAddReviewerModal}: Props) => {
     const {time, date } = DateTimeFormatter(data?.createdAt + '')
     const {title, time_limit, image_url, id } = data;
     const ext = image_url?.split('.')[3];
-    
+
+const hours = Math.floor(Number(time_limit) / 3600);
+const minutes = Math.floor((Number(time_limit) % 3600) / 60);
+const remainingSeconds = Number(time_limit) % 60;
+
+const timeLeft = `0${hours}:${minutes < 10 ? `0${minutes}` : minutes}:${remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds} `
+
     return <div className="flex justify-evenly text-white cursor-pointer even:bg-gray-200 items-center" onClick={() => router.push(`study-notes/${id}`)}>
       <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap">{id}</div>
       <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap">{title}</div>
       <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap">{ext ? ext?.toUpperCase(): 'NONE'}</div>
-      <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap">{time_limit}s</div>
+      <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap">{timeLeft}</div>
       <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap">{date} {time}</div>
     </div>
   }
