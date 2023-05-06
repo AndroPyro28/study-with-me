@@ -1,6 +1,7 @@
 import { createTRPCRouter } from "~/server/api/trpc";
 import { authRouter } from "~/server/api/routers/auth/auth.router";
 import { reviewerRouter } from "./routers/reviewer/reviewer.router";
+import { eventRouter } from "./routers/event/event.router";
 
 /**
  * This is the primary router for your server.
@@ -9,7 +10,8 @@ import { reviewerRouter } from "./routers/reviewer/reviewer.router";
  */
 export const appRouter = createTRPCRouter({
   auth: authRouter,
-  reviewer: reviewerRouter
+  reviewer: reviewerRouter,
+  event: eventRouter
 });
 
 // export type definition of API
