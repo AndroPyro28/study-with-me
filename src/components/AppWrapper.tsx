@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "./Loader";
 import { setLoader } from "~/app/features/loaderSlice";
 import useAuth from "~/hooks/useAuth";
-import NavLinks from "./NavLinks";
+import NavLinks from "./Navbar";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 // #region component

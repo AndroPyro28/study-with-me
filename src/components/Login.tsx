@@ -40,7 +40,7 @@ const Login = ( {handleChangeContent} : Props) => {
       })
 
       toast('Successful', {type: 'success'});
-      router.replace('/calendar')
+      window.location.replace('/calendar')
     },
   })
 

@@ -1,4 +1,4 @@
-import NavLinks from "~/components/NavLinks";
+import NavLinks from "~/components/Navbar";
 import useAuth from "~/hooks/useAuth";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
