@@ -47,16 +47,6 @@ function Timer({ data }: Props) {
     };
   }, [timeLeft]);
 
-  // useEffect(() => {
-  //   return () => {
-  //     mutate({
-  //       timeLeft: timeLeft.toString(),
-  //       id: data?.id,
-  //       notesContent
-  //     })
-  //   }
-  // }, [])
-
   const hours = Math.floor(timeLeft / 3600);
   const minutes = Math.floor((timeLeft % 3600) / 60);
   const seconds = timeLeft % 60;

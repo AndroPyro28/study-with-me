@@ -19,6 +19,7 @@ model User {
     updatedAt DateTime   @updatedAt
     profile   Profile?
     Reviewer  Reviewer[]
+    Event     Event[]
 
     @@map("users")
 }
@@ -35,14 +36,26 @@ model Profile {
 }
 
 model Reviewer {
-    id        String  @id @default(cuid())
-    title     String
-    image_url String?
-    image_id String?
-    notes     String?  @db.LongText
+    id         String   @id @default(cuid())
+    title      String
+    image_url  String?
+    image_id   String?
+    notes      String?  @db.LongText
     time_limit String   @default("7200")
+    userId     Int
+    user       User     @relation(fields: [userId], references: [id])
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+}
+
+model Event {
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    id        String   @id @default(cuid())
+    title     String
+    timeStart String
+    timeEnd   String
+    allDay    Boolean @default(false)
     userId    Int
-    user      User    @relation(fields: [userId], references: [id])
-    createdAt DateTime   @default(now())
-    updatedAt DateTime   @updatedAt
+    user      User     @relation(fields: [userId], references: [id])
 }
