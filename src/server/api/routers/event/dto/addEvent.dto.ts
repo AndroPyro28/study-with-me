@@ -1,6 +1,7 @@
 import z from 'zod'
 
 export const AddEventDto = z.object({
+    id: z.string().uuid(),
     title: z.string(),
     timeStart: z.string(),
     timeEnd: z.string(),

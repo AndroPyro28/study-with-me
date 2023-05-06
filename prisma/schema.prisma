@@ -51,7 +51,7 @@ model Reviewer {
 model Event {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-    id        String   @id @default(cuid())
+    id        String   @id @default(uuid())
     title     String
     timeStart String
     timeEnd   String

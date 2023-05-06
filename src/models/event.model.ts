@@ -6,11 +6,12 @@ export const createOneEvent = async (eventInput: AddEventSchema, userId: number)
 
     const eventData = await event.create({
         data: {
+            id: eventInput.id,
             title: eventInput.title,
             timeStart: eventInput.timeStart,
             timeEnd: eventInput.timeEnd,
             allDay: eventInput.allDay,
-            userId: userId
+            userId: userId,
         }
     })
 
@@ -37,7 +38,7 @@ export const updateEvent = async (eventInput: UpdatEventSchema, userId: number) 
             allDay: eventInput.allDay,
         },
         where: {
-            id: eventInput.id,
+            id: eventInput.id
         }
     })
 

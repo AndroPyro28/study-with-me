@@ -37,9 +37,8 @@ const AddNoteModal = ({handler}: Props) => {
     onError: UnAuthorizeError,
     onSuccess() {
       context.reviewer.getAllReviewer.invalidate()
-      toast('Reviewer Created', {type: 'success'})
+      toast('Note Created', {type: 'success'})
     }
-    
   })
 
   const onSubmit = async (values: NoteTypeInput, {resetForm}: any) => {
@@ -93,7 +92,7 @@ const AddNoteModal = ({handler}: Props) => {
                 onClick={handler}
               />
               <div className="flex h-[45vh] w-[100%] flex-col items-center justify-between">
-                <h1 className="text-[2.5em] text-gray-900">Create Reviewer</h1>
+                <h1 className="text-[2.5em] text-gray-900">Create Note</h1>
                 <div className="flex w-full justify-between">
                   {" "}
                   <span>Title: </span>{" "}
@@ -101,7 +100,7 @@ const AddNoteModal = ({handler}: Props) => {
                     type="text"
                     className="border-6 h-[50px] w-[67%] rounded-md border border-solid border-black px-5 py-2 outline-none"
                     name="title"
-                    placeholder="Title of reviewer"
+                    placeholder="Title of Note"
                   />
                 </div>
                 <div className="flex w-full justify-between">

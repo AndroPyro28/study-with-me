@@ -1,7 +1,7 @@
 import z from 'zod'
 
 export const UpdateEventDto = z.object({
-    id: z.string().cuid(),
+    id: z.string().uuid(),
     title: z.string(),
     timeStart: z.string(),
     timeEnd: z.string(),
