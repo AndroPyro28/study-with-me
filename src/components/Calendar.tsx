@@ -1,17 +1,17 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import DateTimeFormatter from "~/helper/DateTimeFormatter.helper";
-import listPlugin from '@fullcalendar/list'
 import { api } from "~/utils/api";
 import { Event } from "@prisma/client";
+import { UnAuthorizeError } from "~/helper/Unauthorize.helper";
 
 interface Props {
   currentEvents: Event[]
 }
 const Calendar = ({ currentEvents}: Props) => {
+
   const handleDateSelect = (selectInfo: any) => {
     let title = prompt("Please enter a new title for your event");
     let calendarApi = selectInfo.view.calendar;
@@ -45,6 +45,7 @@ const Calendar = ({ currentEvents}: Props) => {
 
   }
   const { mutate: mutateAdd } = api.event.addEvent.useMutation({
+    onError: UnAuthorizeError,
     onSettled: handleOnsettled
   })
   const handleAddEvent = ({event}: any) => {
@@ -60,6 +61,7 @@ const Calendar = ({ currentEvents}: Props) => {
   }
 
   const { mutate: mutateUpdate } = api.event.updateEvent.useMutation({
+    onError: UnAuthorizeError
     // onSettled: handleOnsettled
   })
 
@@ -74,6 +76,7 @@ const Calendar = ({ currentEvents}: Props) => {
     mutateUpdate(eventObj)
   }
   const { mutate: mutateDelete } = api.event.deleteEvent.useMutation({
+    onError: UnAuthorizeError,
     onSettled: handleOnsettled
   })
   const handleDeleteEvent = ({event}: any) => {
@@ -85,7 +88,7 @@ const Calendar = ({ currentEvents}: Props) => {
   })
 
   return (
-    <div className="w-[80vw] flex-1">
+    <div className="w-[80vw] flex-1 ">
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{
@@ -111,6 +114,7 @@ const Calendar = ({ currentEvents}: Props) => {
         eventChange={handleUpdateEvent}
         eventRemove={handleDeleteEvent}
       />
+      
     </div>
   );
 };

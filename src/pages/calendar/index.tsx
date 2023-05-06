@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
 import DateTimeFormatter from "~/helper/DateTimeFormatter.helper";
 import Calendar from "~/components/Calendar";
@@ -6,9 +6,11 @@ import moment from 'moment'
 import { Event } from "@prisma/client";
 import { api } from "~/utils/api";
 import Loader from "~/components/Loader";
+import dynamic from "next/dynamic";
+import useAuth from "~/hooks/useAuth";
 
 const index = () => {
-
+  useAuth();
   const [currentEvents, setCurrentEvents] = useState<Event[]>([]);
 
   const {data, isLoading} = api.event.getAllEventByUserId.useQuery()

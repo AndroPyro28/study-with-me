@@ -14,7 +14,6 @@ const AppWrapper = ({ children }: Props) => {
   const data = useAuth();
   const excludedRoutes = ['/study-notes/[reviewerId]']
   const {pathname} = useRouter();
-  console.log(pathname)
   return (
     <div className="">
       {data && !excludedRoutes.includes(pathname) && <NavLinks />}

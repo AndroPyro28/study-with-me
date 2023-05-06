@@ -9,6 +9,7 @@ import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import axios from "axios";
 import Loader from "./Loader";
+import { UnAuthorizeError } from "~/helper/Unauthorize.helper";
 
 const initialValues = {
   title: "",
@@ -33,12 +34,10 @@ type Props = {
 const AddNoteModal = ({handler}: Props) => {
   const context = api.useContext()
   const {mutate, isLoading} = api.reviewer.createReviewer.useMutation({
-    onError() {
-      toast('Something went wrong...')
-    },
+    onError: UnAuthorizeError,
     onSuccess() {
       context.reviewer.getAllReviewer.invalidate()
-      toast('Reviewer Created')
+      toast('Reviewer Created', {type: 'success'})
     }
     
   })

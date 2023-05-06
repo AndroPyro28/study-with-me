@@ -4,10 +4,13 @@ import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import { api } from "~/utils/api";
 import styles from './style.module.css'
 import ReviewerContent from "~/components/ReviewerContent";
+import useAuth from "~/hooks/useAuth";
 
 const reviewerDetail = () => {
+  useAuth()
   const { query } = useRouter();
   const { reviewerId } = query;
+
   if (!reviewerId) {
     return <></>;
   }
@@ -18,15 +21,7 @@ const reviewerDetail = () => {
   const handleStart = () => {
     setHasStarted(true)
   }
-  // const router = useRouter();
 
-  // useEffect(() => {
-  //   window.onbeforeunload = (e) => {
-  //     router.replace("/study-notes");
-  //     console.log(e)
-  //     return "are you sure you want to leave?";
-  //   };
-  // }, [])
   return (
     <div className={styles.reviewer}>
         {!hasStarted ? <button className="bg-white px-[20px] py-[10px] m-auto rounded-md" onClick={handleStart}>Start Review</button> : <ReviewerContent data={data!} />}
@@ -35,11 +30,3 @@ const reviewerDetail = () => {
 };
 
 export default reviewerDetail;
-
-// export const getServerSideProps = async  () => {
-//   return {
-//     props: {
-//       some: ''
-//     }
-//   }
-// }

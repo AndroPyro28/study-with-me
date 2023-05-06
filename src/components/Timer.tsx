@@ -9,6 +9,7 @@ import dynamic from "next/dynamic";
 import { api } from "~/utils/api";
 import z, { TypeOf } from 'zod'
 import Loader from "./Loader";
+import { UnAuthorizeError } from "~/helper/Unauthorize.helper";
 interface Props {
   data: Reviewer;
 }
@@ -29,6 +30,7 @@ function Timer({ data }: Props) {
   const router = useRouter();
 
   const {mutate, isLoading} = api.reviewer.updateReviewer.useMutation({
+    onError: UnAuthorizeError,
     onSettled: () => {
       router.push('/study-notes')
     }
