@@ -20,6 +20,9 @@ model User {
     profile   Profile?
     Reviewer  Reviewer[]
     Event     Event[]
+    Quiz      Quiz[]
+    Question  Question[]
+    Answer    Answer[]
 
     @@map("users")
 }
@@ -53,9 +56,53 @@ model Event {
     updatedAt DateTime @updatedAt
     id        String   @id @default(uuid())
     title     String
-    timeStart String
-    timeEnd   String
-    allDay    Boolean @default(false)
+    timeStart DateTime
+    timeEnd   DateTime
+    allDay    Boolean  @default(false)
     userId    Int
     user      User     @relation(fields: [userId], references: [id])
+}
+
+model Quiz {
+    id              String      @id @default(cuid())
+    title           String
+    createdAt       DateTime    @default(now())
+    updatedAt       DateTime    @updatedAt
+    posted          Boolean     @default(false)
+    date_submission DateTime    @default(now())
+    time_duration   String      @default("now")
+    Question        Question[]
+    Answer          Answer[]
+    userId          Int
+    user            User        @relation(fields: [userId], references: [id])
+}
+
+model Question {
+    id                  String              @id @default(cuid())
+    question            String
+    objective_test_type objective_test_type
+    question_number     Int
+    dedicated_answer    String
+    quiz_id             String
+    quiz                Quiz                @relation(fields: [quiz_id], references: [id])
+    userId              Int
+    user                User                @relation(fields: [userId], references: [id]) // not necessary but i might use this
+    Answer              Answer[]
+}
+
+model Answer {
+    id          String   @id @default(cuid())
+    answer      String
+    quiz_id     String
+    quiz        Quiz     @relation(fields: [quiz_id], references: [id])
+    question_id String
+    question    Question @relation(fields: [question_id], references: [id])
+    userId      Int
+    user        User     @relation(fields: [userId], references: [id])
+}
+
+enum objective_test_type {
+    MULTIPLE_CHOICES
+    ENUMERATION
+    TRUE_OR_FALSE
 }

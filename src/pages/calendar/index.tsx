@@ -16,11 +16,14 @@ const index = () => {
 
   console.log('hello', isLoading, data)
   const renderSidebarEvent = (event: Event) => {
-    const { date, time } = DateTimeFormatter(event?.timeStart);
+    const dateObj = new Date(event.timeStart)
+    dateObj.setDate(dateObj.getDate() + 1);
+    const { date, time } = DateTimeFormatter(dateObj + '');
     return (
       <li key={event.id} className="flex justify-between">
         <div className="font-bold">
             {moment(date).format('ll')} {time}
+            {/* {date} {time} */}
         </div>
         <div>-</div>
         <div>{event.title}</div>

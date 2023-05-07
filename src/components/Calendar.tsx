@@ -8,6 +8,7 @@ import listPlugin from '@fullcalendar/list'
 import { api } from "~/utils/api";
 import { Event } from "@prisma/client";
 import { v4 as uuid } from 'uuid';
+import { start } from "repl";
 
 interface Props {
   currentEvents: Event[]
@@ -17,7 +18,6 @@ const Calendar = ({ currentEvents}: Props) => {
     let title = prompt("Please enter a new title for your event");
     let calendarApi = selectInfo.view.calendar;
     calendarApi.unselect(); // clear date selection
-
     if (title) {
       const events: any = {
         id: uuid(),
@@ -53,8 +53,8 @@ const Calendar = ({ currentEvents}: Props) => {
     const eventObj = {
       id: event.id,
       title: event.title,
-      timeStart: event.start + '',
-      timeEnd: event.end + '',
+      timeStart: event.start,
+      timeEnd: event.end,
       allDay: event.allDay
     }
 
@@ -69,8 +69,8 @@ const Calendar = ({ currentEvents}: Props) => {
     const eventObj = {
       id: event.id,
       title: event.title,
-      timeStart: event.start + '',
-      timeEnd: event.end + '',
+      timeStart: event.start,
+      timeEnd: event.end,
       allDay: event.allDay,
     }
     mutateUpdate(eventObj)
@@ -86,6 +86,7 @@ const Calendar = ({ currentEvents}: Props) => {
     return {id: event?.id, title: event?.title, start: new Date(event?.timeStart), end: new Date(event?.timeEnd)}
   })
 
+  const today = new Date()
   return (
     <div className="w-[80vw] flex-1">
       <FullCalendar
@@ -94,6 +95,9 @@ const Calendar = ({ currentEvents}: Props) => {
           left: "prev,next today",
           center: "title",
           right: "dayGridMonth,timeGridWeek,timeGridDay",
+        }}
+        validRange={{
+          start: today
         }}
         initialView="dayGridMonth"
         editable={true}

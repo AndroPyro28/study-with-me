@@ -1,7 +1,9 @@
 import { api } from '~/utils/api';
 import { useRouter} from 'next/router'
-
+import { useDispatch } from 'react-redux';
+import { authenticationSuccess } from '~/app/features/userSlice';
 const useAuth = () => {
+  const dispatch = useDispatch();
     const router = useRouter();
     const {data, isError, isLoading} = api.auth.getMe.useQuery(undefined, {
         retry: (_count, err) => {
@@ -15,6 +17,9 @@ const useAuth = () => {
           if (err.data?.code === "UNAUTHORIZED") {
             void router.push('/');
           }
+        },
+        onSuccess: (data) => {
+          dispatch(authenticationSuccess(data))
         }
     })
 
