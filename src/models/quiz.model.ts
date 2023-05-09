@@ -18,8 +18,8 @@ export const findAllQuizByUserId = async ( userId: number) => {
             userId
         },
         include: {
-            Question: true,
-            Answer: true
+            question: true,
+            answer: true
         }
     })
 

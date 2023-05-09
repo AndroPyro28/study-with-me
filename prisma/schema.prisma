@@ -71,8 +71,8 @@ model Quiz {
     posted          Boolean     @default(false)
     date_submission DateTime    @default(now())
     time_duration   String      @default("now")
-    Question        Question[]
-    Answer          Answer[]
+    question        Question[]
+    answer          Answer[]
     userId          Int
     user            User        @relation(fields: [userId], references: [id])
 }
@@ -87,7 +87,8 @@ model Question {
     quiz                Quiz                @relation(fields: [quiz_id], references: [id])
     userId              Int
     user                User                @relation(fields: [userId], references: [id]) // not necessary but i might use this
-    Answer              Answer[]
+    answer              Answer[]
+
 }
 
 model Answer {
@@ -99,6 +100,7 @@ model Answer {
     question    Question @relation(fields: [question_id], references: [id])
     userId      Int
     user        User     @relation(fields: [userId], references: [id])
+
 }
 
 enum objective_test_type {

@@ -3,6 +3,7 @@ import React from "react";
 import DateTimeFormatter from "~/helper/DateTimeFormatter.helper";
 import { api } from "~/utils/api";
 import AddQuizModal from "./AddQuizModal";
+import { useRouter } from "next/router";
 
 interface Props {
   handler: () => void,
@@ -24,15 +25,18 @@ const Quizes = ({handler, openAddQuizModal}: Props) => {
 
   type QuizProps = {
     data: Quiz & {
-      Answer: Answer[];
-      Question: Question[];
+      answer: Answer[];
+      question: Question[];
     };
   };
+
+
+  const router = useRouter();
 
   const QuizTableData = ({ data }: QuizProps) => {
     const { time, date } = DateTimeFormatter(data?.createdAt + "");
     return (
-      <div className="flex cursor-pointer items-center justify-evenly text-white even:bg-gray-200">
+      <div className="flex cursor-pointer items-center justify-evenly text-white even:bg-gray-200" onClick={() => router.push(`/quizes/${data.id}`)}>
         <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800">
           {data.id}
         </div>
