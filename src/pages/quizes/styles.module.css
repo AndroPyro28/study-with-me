@@ -38,3 +38,22 @@
     border-bottom: solid 2px gray;
     margin-left: 80px;
 }
+
+.answerData {
+    /* flex flex-1 justify-center w-full */
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    width: 100%;
+    font-size: 0.8em;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    font-style: italic;
+    overflow: hidden;
+       
+}
+
+.modal {
+    @apply fixed left-0 right-0 top-0 z-50 h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0;
+    background: rgba(0, 0, 0, 0.534);
+}

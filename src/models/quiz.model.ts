@@ -25,3 +25,17 @@ export const findAllQuizByUserId = async ( userId: number) => {
 
     return quizData
 }
+
+export const postQUiz = async ( id: string, userId: number) => {
+    const quizData = await quiz.update({
+        where: {
+            id
+        },
+        data: {
+            posted: true
+        }
+        
+    })
+
+    return quizData
+}

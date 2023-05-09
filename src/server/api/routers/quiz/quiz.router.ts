@@ -1,7 +1,7 @@
 import { createTRPCRouter, privateProcedure, } from "~/server/api/trpc";
 import z from 'zod'
 import { addQuizDto } from "~/components/AddQuizModal";
-import { createOneQiuz, findAllQuizByUserId } from "~/models";
+import { createOneQiuz, findAllQuizByUserId, postQUiz } from "~/models";
 
 export const quizRouter = createTRPCRouter({
     createOneQuiz: privateProcedure.input(addQuizDto).mutation(async ({ctx, input}) => {
@@ -12,5 +12,8 @@ export const quizRouter = createTRPCRouter({
         const quizes = findAllQuizByUserId(ctx.currentUser.id);
 
         return quizes
+    }),
+    postQuiz: privateProcedure.input(z.string().cuid()).mutation( async ({ctx, input}) => {
+        return postQUiz(input, ctx.currentUser.id)
     })
 });

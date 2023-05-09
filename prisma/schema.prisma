@@ -64,31 +64,41 @@ model Event {
 }
 
 model Quiz {
-    id              String      @id @default(cuid())
+    id              String     @id @default(cuid())
     title           String
-    createdAt       DateTime    @default(now())
-    updatedAt       DateTime    @updatedAt
-    posted          Boolean     @default(false)
-    date_submission DateTime    @default(now())
-    time_duration   String      @default("now")
+    createdAt       DateTime   @default(now())
+    updatedAt       DateTime   @updatedAt
+    posted          Boolean    @default(false)
+    date_submission DateTime   @default(now())
+    time_duration   String     @default("now")
     question        Question[]
     answer          Answer[]
     userId          Int
-    user            User        @relation(fields: [userId], references: [id])
+    user            User       @relation(fields: [userId], references: [id])
+    Choice          Choice[]
 }
 
 model Question {
     id                  String              @id @default(cuid())
     question            String
     objective_test_type objective_test_type
-    question_number     Int
+    // question_number     Int
     dedicated_answer    String
     quiz_id             String
-    quiz                Quiz                @relation(fields: [quiz_id], references: [id])
+    quiz                Quiz                @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
     userId              Int
     user                User                @relation(fields: [userId], references: [id]) // not necessary but i might use this
     answer              Answer[]
+    choice              Choice[]
+}
 
+model Choice {
+    id              String   @id @default(cuid())
+    choice          String
+    quiz_id         String
+    quiz            Quiz     @relation(fields: [quiz_id], references: [id])
+    questionaire_id String
+    question        Question @relation(fields: [questionaire_id], references: [id], onDelete: Cascade)
 }
 
 model Answer {
@@ -97,10 +107,9 @@ model Answer {
     quiz_id     String
     quiz        Quiz     @relation(fields: [quiz_id], references: [id])
     question_id String
-    question    Question @relation(fields: [question_id], references: [id])
+    question    Question @relation(fields: [question_id], references: [id], onDelete: Cascade)
     userId      Int
     user        User     @relation(fields: [userId], references: [id])
-
 }
 
 enum objective_test_type {
