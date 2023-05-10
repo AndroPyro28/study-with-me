@@ -20,7 +20,6 @@ const quizDetail = () => {
   const context = api.useContext();
   const router = useRouter();
   const [displayConfirmModal, setDisplayConfirmModal] = useState(false);
-
   const QuestionaireCreateContainer = () => {
     const [choicePopulate, setChoicePopulate] = useState<string[]>([]);
     const [answer, setAnswer] = useState<string>("");
