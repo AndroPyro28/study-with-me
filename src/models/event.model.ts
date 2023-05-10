@@ -26,6 +26,9 @@ export const findAllEventByUserId = async (userId: number) => {
             //     gt: new Date()
             // }
         },
+        orderBy: {
+            timeStart: 'desc'
+        }
     })
 
     return eventData
