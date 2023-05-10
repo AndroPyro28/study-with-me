@@ -17,7 +17,7 @@ const useReverseAuth = () => {
         },
     })
 
-    return data
+    return {data, isError, isLoading}
 }
 
 export default useReverseAuth;
