@@ -37,7 +37,7 @@ const Quizes = ({handler, openAddQuizModal}: Props) => {
   const QuizTableData = ({ data }: QuizProps) => {
     const { time, date } = DateTimeFormatter(data?.createdAt + "");
     return (
-      <div className="flex cursor-pointer items-center justify-evenly text-white even:bg-gray-200" onClick={() => router.push(`/quizes/${data.id}`)}>
+      <div className="flex cursor-pointer items-center justify-evenly text-white even:bg-gray-200" onClick={() => window.location.assign(`/quizes/${data.id}`)}>
         <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800">
           {data.id}
         </div>
