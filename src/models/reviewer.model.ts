@@ -1,6 +1,7 @@
 import { NoteTypeInput } from "~/components/AddNoteModal";
 import { reviewer } from "./index";
 import { updateSchemaType } from "~/components/Timer";
+import { faFontAwesomeAlt } from "@fortawesome/free-brands-svg-icons";
 
 export const createOneReviewer = async (reviewerInput: NoteTypeInput, userId: number) => {
   const {image_url, image_id, title,} = reviewerInput;
@@ -56,5 +57,13 @@ export const updateOneReviewer = async (reviewerInput: updateSchemaType, userId:
   })
 
   return reviewerData
+}
+export const deleteOneReviewer = async (id: string, userId: number) => {
+  const deletedReviewer = await reviewer.delete({
+    where: {
+      id
+    }
+  })
+  return deletedReviewer
 }
 

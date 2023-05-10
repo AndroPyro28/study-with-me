@@ -6,7 +6,7 @@ import DateTimeFormatter from "~/helper/DateTimeFormatter.helper";
 import Loader from "./Loader";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faRemove } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   openAddReviewerModal: boolean,
@@ -24,7 +24,7 @@ const Notes = ({handler, openAddReviewerModal}: Props) => {
       <div className="flex-1 bg-gray-600 p-5 text-center">File type</div>
       <div className="flex-1 bg-gray-600 p-5 text-center">Time Left</div>
       <div className="flex-1 bg-gray-600 p-5 text-center">Date Created</div>
-
+      <div className="flex-1 bg-gray-600 p-5 text-center">Action</div>
     </div>
   );
 
@@ -34,6 +34,11 @@ const Notes = ({handler, openAddReviewerModal}: Props) => {
 
   const router = useRouter();
   
+  const {mutate: mutateDelete} = api.reviewer.deleteReviewer.useMutation()
+
+  const handleDeleteReviewer = (id: string) => {
+    mutateDelete(id);
+  }
   const NoteTableData = ({data}: NoteTableDataProps) => {
     const {time, date } = DateTimeFormatter(data?.createdAt + '')
     const {title, time_limit, image_url, id } = data;
@@ -45,12 +50,13 @@ const remainingSeconds = Number(time_limit) % 60;
 
 const timeLeft = `0${hours}:${minutes < 10 ? `0${minutes}` : minutes}:${remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds} `
 
-    return <div className="flex justify-evenly text-white cursor-pointer even:bg-gray-200 items-center" onClick={() => router.push(`study-notes/${id}`)}>
-      <div className="flex-1 p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap">{id}</div>
-      <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap">{title}</div>
-      <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap">{ext ? ext?.toUpperCase(): 'NONE'}</div>
-      <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap">{timeLeft}</div>
-      <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap">{date} {time}</div>
+    return <div className="flex justify-evenly text-white cursor-pointer even:bg-gray-200 items-center" >
+      <div className="flex-1 p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap"onClick={() => router.push(`study-notes/${id}`)} >{id}</div>
+      <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap"onClick={() => router.push(`study-notes/${id}`)} >{title}</div>
+      <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap"onClick={() => router.push(`study-notes/${id}`)} >{ext ? ext?.toUpperCase(): 'NONE'}</div>
+      <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap"onClick={() => router.push(`study-notes/${id}`)} >{timeLeft}</div>
+      <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap"onClick={() => router.push(`study-notes/${id}`)}>{date} {time}</div>
+      <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap"><button className="bg-red-400 px-[10px] py-[5px] rounded-md hover:bg-red-200" onClick={() => handleDeleteReviewer(id)}> <FontAwesomeIcon icon={faRemove} /> Delete</button></div>
     </div>
   }
 

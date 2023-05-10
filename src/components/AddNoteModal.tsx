@@ -81,11 +81,10 @@ const AddNoteModal = ({handler}: Props) => {
   
               };
             }
-            
           };
 
           return (
-            <Form className="absolute bottom-0 left-0 right-0 top-0 m-auto h-fit w-[35vw] rounded-md bg-white p-20">
+            <Form className="absolute bottom-0 left-0 right-0 top-0 m-auto h-fit w-[45vw] rounded-md bg-white p-20 ">
               <FontAwesomeIcon
                 icon={faClose}
                 className="absolute right-8 top-5 w-[25px] cursor-pointer"

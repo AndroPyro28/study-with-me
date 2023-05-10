@@ -1,6 +1,6 @@
 import { createTRPCRouter, privateProcedure, publicProcedure } from "~/server/api/trpc";
 import { noteSchema } from "~/components/AddNoteModal";
-import { createOneReviewer, findAllReviewerByUserId, findOneReviewerByUserId, updateOneReviewer } from "~/models/reviewer.model";
+import { createOneReviewer, deleteOneReviewer, findAllReviewerByUserId, findOneReviewerByUserId, updateOneReviewer } from "~/models/reviewer.model";
 import z from 'zod'
 import { updateReviewerSchema } from "~/components/Timer";
 export const reviewerRouter = createTRPCRouter({
@@ -18,7 +18,10 @@ export const reviewerRouter = createTRPCRouter({
     }),
     updateReviewer: privateProcedure.input(updateReviewerSchema).mutation(async({ctx, input}) => {
         const reviewer = await updateOneReviewer(input, ctx.currentUser.id );
-
+        return reviewer;
+    }),
+    deleteReviewer: privateProcedure.input(z.string().cuid()).mutation(async({ctx, input}) => {
+        const reviewer = await deleteOneReviewer(input, ctx.currentUser.id );
         return reviewer;
     })
 });
