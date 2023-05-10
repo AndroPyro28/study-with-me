@@ -23,7 +23,7 @@ export type updateSchemaType = TypeOf<typeof updateReviewerSchema>;
   
 
 function Timer({ data }: Props) {
-  const [timeLeft, setTimeLeft] = useState(Number(data?.time_limit));
+  const [timeLeft, setTimeLeft] = useState(Number(data?.time_limit) ?? 10);
   const [notesContent, setNotesContent] = useState(data?.notes ?? '');
   const ReactQuill = useMemo(() => dynamic(() => import('react-quill'), { ssr: false }),[]);
 
