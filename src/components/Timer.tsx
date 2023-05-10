@@ -42,7 +42,7 @@ function Timer({ data }: Props) {
         setTimeLeft(timeLeft - 1);
       } else {
         handleSave()
-        window.location.assign('/study-notes')
+        // window.location.assign('/study-notes')
       }
     }, 1000);
 
