@@ -19,6 +19,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <link rel="icon" href="/assets/logo.png" />
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'></link>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         {/* <script defer></script> */}
         <script defer src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
       </Head>
