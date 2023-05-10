@@ -227,7 +227,7 @@ const quizDetail = () => {
           onClick={insertQuestionaire}
           disabled={isLoadingAdd}
         >
-          {isLoadingAdd ? <Loader size={20} /> : `Insert Questionare`}
+          {isLoadingAdd ? <Loader size={20} /> : `Insert Questionaire`}
         </button>
       </div>
     );
