@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -9,11 +9,15 @@ import { api } from "~/utils/api";
 import { Event } from "@prisma/client";
 import { v4 as uuid } from 'uuid';
 import { start } from "repl";
+import dynamic from "next/dynamic";
 
 interface Props {
   currentEvents: Event[]
 }
 const Calendar = ({ currentEvents}: Props) => {
+
+  const FullCalendar = useMemo(() => dynamic(() => import('@fullcalendar/react'), { ssr: false }),[]);
+
   const handleDateSelect = (selectInfo: any) => {
     let title = prompt("Please enter a new title for your event");
     let calendarApi = selectInfo.view.calendar;
