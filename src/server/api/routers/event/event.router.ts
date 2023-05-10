@@ -22,21 +22,20 @@ export const eventRouter = createTRPCRouter({
 
     const today = new Date(); // get current date/time
 
-    const filteredRecords = event.filter((record) => {
-      const recordDate = record.timeStart.getDate();
-      const recordMonth = record.timeStart.getMonth();
-      const recordYear = record.timeStart.getFullYear();
-      const currentDate = today.getDate();
-      const currentMonth = today.getMonth();
-      const currentYear = today.getFullYear();
-
-      // check if record was created today
-      return (
-        recordDate === currentDate &&
-        recordMonth === currentMonth &&
-        recordYear === currentYear
-      );
-    });
+    const filteredSchedule = event.filter((e) => {
+        const dateDate = e.timeStart.getDate();
+        const dateMonth =  e.timeStart.getMonth();
+        const dateYear =  e.timeStart.getFullYear();
+      
+        const currentDate = today.getDate();
+        const currentMonth = today.getMonth();
+        const currentYear = today.getFullYear();
+      
+        // check if date is on or after today
+        return dateYear > currentYear || 
+               (dateYear === currentYear && dateMonth > currentMonth) || 
+               (dateYear === currentYear && dateMonth === currentMonth && dateDate >= currentDate);
+      });
     console.log("get", event);
 
     return event;
