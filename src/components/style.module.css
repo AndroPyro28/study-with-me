@@ -1,6 +1,26 @@
 
 .form {
     @apply text-white max-h-full  bg-white px-5 py-7 rounded-xl w-[30vw];
+
+    @media (max-width: 1000px) {
+        /* @apply w-[40vw] */
+        width: 50vw;
+    }
+
+    @media (max-width: 800px) {
+        /* @apply w-[40vw] */
+        width: 60vw;
+    }
+
+    @media (max-width: 600px) {
+        /* @apply w-[40vw] */
+        width: 75vw;
+    }
+
+    @media (max-width: 400px) {
+        /* @apply w-[40vw] */
+        width: 100vw;
+    }
 }
 
 .navlinks {
