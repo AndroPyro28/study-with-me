@@ -71,11 +71,13 @@ model Quiz {
     posted          Boolean    @default(false)
     date_submission DateTime   @default(now())
     time_duration   String     @default("now")
+    isSubmitted     Boolean    @default(false)
     question        Question[]
     answer          Answer[]
     userId          Int
     user            User       @relation(fields: [userId], references: [id])
-    Choice          Choice[]
+    choice          Choice[]
+    score           Int @default(0)
 }
 
 model Question {

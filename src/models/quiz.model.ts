@@ -20,6 +20,9 @@ export const findAllQuizByUserId = async ( userId: number) => {
         include: {
             question: true,
             answer: true
+        },
+        orderBy: {
+            createdAt: 'desc'
         }
     })
 
@@ -34,8 +37,41 @@ export const postQUiz = async ( id: string, userId: number) => {
         data: {
             posted: true
         }
-        
     })
+    return quizData
+}
+
+export const getQuizById = async (id: string, userId: number) => {
+    const quizData = await quiz.findFirst({
+        where: {
+            id,
+            userId
+        },
+        include: {
+            answer: true,
+            // choice: true,
+            question: {
+                include: {
+                    choice: true,
+                }
+            }
+        }
+    });
+
+    return quizData
+}
+
+export const submitQuiz = async (id: string, totalScore: number) => {
+    const quizData = await quiz.update({
+        where: {
+            id,
+        },
+        data: {
+            isSubmitted: true,
+            posted: true,
+            score: totalScore
+        }
+    });
 
     return quizData
 }

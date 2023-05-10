@@ -15,10 +15,13 @@ export const createOneReviewer = async (reviewerInput: NoteTypeInput, userId: nu
   return reviewerData;
 };
 
-export const findAllReviewerByUserId = async (userId: number) => {
+export const findAllReviewerByUserId = async (userId: number, search: string) => {
   const reviewerList = await reviewer.findMany({
     where: {
-      userId
+      userId,
+      title: {
+        startsWith: search
+      }
     },
     orderBy: {
       createdAt: 'desc'

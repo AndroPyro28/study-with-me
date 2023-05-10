@@ -17,7 +17,7 @@ const Quizes = ({handler, openAddQuizModal}: Props) => {
       <div className="flex-1 bg-gray-600 p-5 text-center">id</div>
       <div className="flex-1 bg-gray-600 p-5 text-center">Title</div>
       <div className="flex-1 bg-gray-600 p-5 text-center">Status</div>
-      <div className="flex-1 bg-gray-600 p-5 text-center">Time Left</div>
+      <div className="flex-1 bg-gray-600 p-5 text-center">Score</div>
       <div className="flex-1 bg-gray-600 p-5 text-center">Date Created</div>
     </div>
   );
@@ -44,10 +44,10 @@ const Quizes = ({handler, openAddQuizModal}: Props) => {
           {data.title}
         </div>
         <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800">
-          {data?.posted ? 'Ready' : 'Not Ready'}
+          {!data?.isSubmitted ? data?.posted ? 'Ready' : 'Not Ready' : 'Submitted'}
         </div>
         <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800">
-          {data?.time_duration}
+          {data?.isSubmitted ? `${data?.score} / ${data?.question?.length}` : `---`}
         </div>
         <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800">
           {date} {time}
@@ -59,7 +59,7 @@ const Quizes = ({handler, openAddQuizModal}: Props) => {
   const fetchQuizes = data?.map((quiz) => <QuizTableData data={quiz} />);
 
   return (
-    <div className="mt-[20px] flex h-auto  w-[50vw] flex-col rounded-md border bg-white">
+    <div className="mt-[20px] flex h-auto flex-col rounded-md border bg-white w-[90vw]">
       { openAddQuizModal && <AddQuizModal handler={handler}/>}
       {QuizTableHeader}
       {fetchQuizes}

@@ -4,6 +4,7 @@ import { reviewerRouter } from "./routers/reviewer/reviewer.router";
 import { eventRouter } from "./routers/event/event.router";
 import { quizRouter } from "./routers/quiz/quiz.router";
 import { questionaireRouter } from "./routers/questionaire/questionaire.router";
+import { answerRouter } from "./routers/answer/answer.router";
 
 /**
  * This is the primary router for your server.
@@ -15,7 +16,8 @@ export const appRouter = createTRPCRouter({
   reviewer: reviewerRouter,
   event: eventRouter,
   quiz: quizRouter,
-  questionaire: questionaireRouter
+  questionaire: questionaireRouter,
+  answer: answerRouter
 });
 
 // export type definition of API

@@ -36,11 +36,13 @@ function Timer({ data }: Props) {
     }
   })
 
-
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (timeLeft > 0) {
         setTimeLeft(timeLeft - 1);
+      } else {
+        handleSave()
+        window.location.assign('/study-notes')
       }
     }, 1000);
 
@@ -62,9 +64,9 @@ function Timer({ data }: Props) {
   }
 
   return (
-    <div className=" overflow-y-hidden">
+    <div className=" overflow-y-hidden w-[40vw]">
       <h1 className="text-white text-5xl text-center mt-[20px] mb-[-20px] ">{data?.title}</h1>
-      <div className="mx-[300px] my-[100px] flex h-fit items-center gap-5 text-center text-4xl text-white">
+      <div className="mx-[50px] my-[100px] flex h-fit items-center gap-5 text-center text-2xl text-white">
         <FontAwesomeIcon icon={faClock} /> {hours.toString().padStart(2, "0")}:
         {minutes.toString().padStart(2, "0")}:
         {seconds.toString().padStart(2, "0")}
@@ -81,6 +83,8 @@ function Timer({ data }: Props) {
           style={{
             height: "75vh",
             background: "white",
+            width: '100%',
+            maxWidth: '100vw',
           }}
           onChange={setNotesContent}
           className="content"

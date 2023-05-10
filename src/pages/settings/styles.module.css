@@ -1,0 +1,31 @@
+.font {
+    @apply absolute bottom-0 left-0 right-0 top-0 m-auto h-[50vh] w-[50vw] rounded-lg bg-white;
+    overflow: auto;
+    @media (max-width: 1200px) {
+        width: 60vw;
+    }
+
+    @media (max-width: 850px) {
+        width: 80vw;
+        height: 60vh
+    }
+
+    @media (max-width: 650px) {
+        width: 90vw;
+        height: 60vh
+    }
+}
+
+.gridTables {
+    @apply grid grid-cols-4 auto-rows-auto place-items-center gap-11;
+
+    @media (max-width: 850px) {
+        grid-template-columns: repeat(3, 1fr)
+    }
+
+    @media (max-width: 650px) {
+        grid-template-columns: repeat(2, 1fr)
+    }
+    
+    
+}

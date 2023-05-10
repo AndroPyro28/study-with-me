@@ -10,13 +10,15 @@ import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import useAuth from "~/hooks/useAuth";
 import Loader from "~/components/Loader";
+import AnswerQuiz from "~/components/AnswerQuiz";
+import ScoreQuiz from "~/components/ScoreQuiz";
 
 const quizDetail = () => {
   useAuth();
   const { query } = useRouter();
   const context = api.useContext();
-const router = useRouter()
-const [displayConfirmModal, setDisplayConfirmModal] = useState(false);
+  const router = useRouter();
+  const [displayConfirmModal, setDisplayConfirmModal] = useState(false);
 
   const QuestionaireCreateContainer = () => {
     const [choicePopulate, setChoicePopulate] = useState<string[]>([]);
@@ -41,14 +43,14 @@ const [displayConfirmModal, setDisplayConfirmModal] = useState(false);
 
     const insertQuestionaire = () => {
       if (!answer || !question)
-        return toast("You must fill the answer and question");
+        return toast("You must fill the answer and question", {type: 'warning'});
       const isChoiceFilled = choicePopulate.every((value) => value != "");
       if (
         selectedType === "MULTIPLE_CHOICES" &&
         !isChoiceFilled &&
         choicePopulate.length < 4
       ) {
-        return toast("You must fill choices");
+        return toast("You must fill choices", {type: 'warning'});
       }
 
       mutateAdd({
@@ -265,17 +267,14 @@ const [displayConfirmModal, setDisplayConfirmModal] = useState(false);
         </section>
       );
     });
-    
 
-    const handleDisplayModal = () => setDisplayConfirmModal(prev => !prev)
+    const handleDisplayModal = () => setDisplayConfirmModal((prev) => !prev);
 
     return (
       <div className="flex h-[80vh] w-[30vw] flex-col rounded-lg bg-white py-[20px] text-black shadow-xl">
-        
-
-        {
-          displayConfirmModal && <ConfirmModal handleDisplayModal={handleDisplayModal}/>
-        }
+        {displayConfirmModal && (
+          <ConfirmModal handleDisplayModal={handleDisplayModal} />
+        )}
         <h1 className="py-5 text-center text-4xl font-bold">
           Questionaires Created
         </h1>
@@ -297,7 +296,10 @@ const [displayConfirmModal, setDisplayConfirmModal] = useState(false);
             </div>
           )}
         </div>
-        <button className="mx-auto w-[80%] rounded-xl bg-[rgb(94,162,242)] px-10 py-3 text-2xl text-white" onClick={handleDisplayModal}>
+        <button
+          className="mx-auto w-[80%] rounded-xl bg-[rgb(94,162,242)] px-10 py-3 text-2xl text-white"
+          onClick={handleDisplayModal}
+        >
           Confirm
         </button>
       </div>
@@ -305,19 +307,18 @@ const [displayConfirmModal, setDisplayConfirmModal] = useState(false);
   };
 
   interface ConfirmModalProps {
-    handleDisplayModal: () => void
+    handleDisplayModal: () => void;
   }
-  const ConfirmModal = ({handleDisplayModal}: ConfirmModalProps) => {
-
-    const {mutate: mutatePost} = api.quiz.postQuiz.useMutation({
+  const ConfirmModal = ({ handleDisplayModal }: ConfirmModalProps) => {
+    const { mutate: mutatePost } = api.quiz.postQuiz.useMutation({
       onSettled: () => {
-        router.push('/quizes')
-      }
-    })
+        router.push("/quizes");
+      },
+    });
     const postQuiz = () => {
-      handleDisplayModal()
+      handleDisplayModal();
       mutatePost(query.quizId as string);
-    }
+    };
 
     return (
       <div id="popup-modal" className={styles.modal}>
@@ -328,7 +329,6 @@ const [displayConfirmModal, setDisplayConfirmModal] = useState(false);
               className="absolute right-2.5 top-3 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
               data-modal-hide="popup-modal"
               onClick={handleDisplayModal}
-
             >
               <svg
                 className="h-5 w-5"
@@ -385,13 +385,33 @@ const [displayConfirmModal, setDisplayConfirmModal] = useState(false);
     );
   };
 
-  return (
-    <div className="flex h-[95vh] items-center gap-10 overflow-hidden bg-[rgb(222,223,232)] px-10">
-      <QuestionaireCreateContainer />
-      <QuestionaireListContainer />
-      {/* <ConfirmModal /> */}
-    </div>
-  );
+  const { isLoading, data } = api.quiz.getQuizById.useQuery(query.quizId! as string);
+
+  if(!data?.posted && !data?.isSubmitted) {
+    return (
+      <div className="flex h-[95vh] items-center gap-10 overflow-hidden bg-[rgb(222,223,232)] px-10">
+        {isLoading ? (
+          <div className="m-auto">
+            <Loader size={50} />
+          </div>
+        ) : (
+          <>
+            <QuestionaireCreateContainer />
+            <QuestionaireListContainer />
+          </>
+        )}
+      </div>
+    );
+  } 
+
+  if(data?.posted && !data?.isSubmitted) {
+    return <AnswerQuiz data={data} />
+  }
+  if(data?.posted && data?.isSubmitted) {
+    return <ScoreQuiz data={data} />
+  } else {
+    router.replace('/quizes')
+  }
 };
 
 export default quizDetail;
