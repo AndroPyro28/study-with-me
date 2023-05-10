@@ -32,7 +32,7 @@ function Timer({ data }: Props) {
   const {mutate, isLoading} = api.reviewer.updateReviewer.useMutation({
     onError: UnAuthorizeError,
     onSettled: () => {
-      router.push('/study-notes')
+     window.location.replace('/study-notes')
     }
   })
 
