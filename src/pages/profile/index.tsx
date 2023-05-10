@@ -39,10 +39,12 @@ const index = () => {
     onError: (err) => {
       toast('Email or Username might already exist!', {type: 'error'})
     },
+    onSuccess: () => {
+      toast('Profile updated!', {type: 'success'})
+    },
     onSettled: () => {
       context.auth.getMe.invalidate();
       handleSetEnableUpdate()
-      toast('Profile updated!', {type: 'success'})
     }
   })
 
