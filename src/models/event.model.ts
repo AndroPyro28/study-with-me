@@ -22,9 +22,6 @@ export const findAllEventByUserId = async (userId: number) => {
     const eventData = await event.findMany({
         where: {
             userId,
-            // timeStart: { 
-            //     gt: new Date()
-            // }
         },
         orderBy: {
             timeStart: 'desc'
