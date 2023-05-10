@@ -319,7 +319,7 @@ const quizDetail = () => {
   const ConfirmModal = ({ handleDisplayModal }: ConfirmModalProps) => {
     const { mutate: mutatePost } = api.quiz.postQuiz.useMutation({
       onSettled: () => {
-        router.push("/quizes");
+        window.location.replace("/quizes");
       },
     });
     const postQuiz = () => {
