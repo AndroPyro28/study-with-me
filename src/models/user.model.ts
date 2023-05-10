@@ -8,7 +8,11 @@ export const findUserByEmail = async (email: string) => {
       email,
     },
     include: {
-      profile: true
+      profile: true,
+      event: true,
+      question: true,
+      quiz: true,
+      reviewer: true
     }
   });
   return userData;
@@ -20,7 +24,11 @@ export const findUserById = async (id: number) => {
         id,
       },
       include: {
-        profile: true
+        profile: true,
+        event: true,
+        question: true,
+        quiz: true,
+        reviewer: true
       }
     });
     return userData;

@@ -23,7 +23,7 @@ const useAuth = () => {
         }
     })
 
-    return data
+    return { data ,isError, isLoading }
 }
 
 export default useAuth;

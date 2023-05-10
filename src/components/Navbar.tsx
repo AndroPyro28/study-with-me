@@ -51,17 +51,20 @@ const NavLinks = () => {
 
             {openProfileMenu && (
               <div
-                className="absolute right-[-4em] top-7 z-50 my-4 list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow dark:divide-gray-600 dark:bg-gray-700 "
+                className="absolute right-[-5em] top-7 z-50 my-4 list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow dark:divide-gray-600 dark:bg-gray-700 "
                 id="user-dropdown"
               >
                 <div className="px-4 py-3">
+                  <Link href={'profile'}>
                   <span className="block text-sm text-gray-900 dark:text-white">
                     {profile?.firstname} {profile?.lastname}
                   </span>
                   <span className="block truncate  text-sm text-gray-500 dark:text-gray-400">
                     {email}
                   </span>
+                  </Link>
                 </div>
+
                 <ul className="py-2" aria-labelledby="user-menu-button">
                   <li>
                     <Link
