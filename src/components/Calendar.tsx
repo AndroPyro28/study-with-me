@@ -18,6 +18,8 @@ const Calendar = ({ currentEvents}: Props) => {
 
   const FullCalendar = useMemo(() => dynamic(() => import('@fullcalendar/react'), { ssr: false }),[]);
 
+  console.log(FullCalendar)
+  
   const handleDateSelect = (selectInfo: any) => {
     let title = prompt("Please enter a new title for your event");
     let calendarApi = selectInfo.view.calendar;
