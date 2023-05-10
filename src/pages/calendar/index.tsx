@@ -33,7 +33,7 @@ const index = () => {
 
   const EventSideBar = () => {
     return (
-      <div className="demo-app-sidebar-section w-[20vw] flex flex-col items-center text-sm">
+      <div className="demo-app-sidebar-section w-[30vw] flex flex-col items-center text-sm">
         <h2>All Events ({data?.length})</h2>
         <div className="mt-20 w-[70%]">
             <ul>{data?.map(renderSidebarEvent)}</ul>
