@@ -13,7 +13,7 @@ const useReverseAuth = () => {
           return true;
         },
         onSuccess: (data) => {
-            void router.replace('/study-notes')
+            void router.replace('/calendar')
         },
     })
 
