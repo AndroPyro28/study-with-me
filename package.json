@@ -45,6 +45,7 @@
     "react-router-dom": "^6.11.0",
     "react-toastify": "^9.1.2",
     "superjson": "1.12.2",
+    "timeago.js": "^4.0.2",
     "uuid": "^9.0.0",
     "yup": "^1.1.1",
     "zod": "^3.21.4",

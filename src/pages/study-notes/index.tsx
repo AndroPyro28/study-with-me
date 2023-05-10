@@ -22,6 +22,5 @@ const index = () => {
     </div>
   );
 };
-// #endregion
 
 export default index;

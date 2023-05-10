@@ -19,11 +19,11 @@ model User {
     createdAt DateTime   @default(now())
     updatedAt DateTime   @updatedAt
     profile   Profile?
-    Reviewer  Reviewer[]
-    Event     Event[]
-    Quiz      Quiz[]
-    Question  Question[]
-    Answer    Answer[]
+    reviewer  Reviewer[]
+    event     Event[]
+    quiz      Quiz[]
+    question  Question[]
+    answer    Answer[]
 
     @@map("users")
 }
