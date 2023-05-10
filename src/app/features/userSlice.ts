@@ -15,7 +15,7 @@ const userSlice = createSlice({
         },
         logout: () => {
              Cookies.remove('userToken')
-             window.location.reload()
+             window.location.replace('/')
         }
     },
 })
