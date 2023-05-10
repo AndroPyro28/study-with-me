@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import styles from './styles.module.css'
+import useAuth from "~/hooks/useAuth";
 function index() {
   const fonts = ["roboto", "arial", "mono", "sans-serif", "helvetica", "courier" , "verdana", 'trebuchet ms', "times new roman", "garamond", "calibiri", "open sans"];
-
+  useAuth()
   const handleChangeFont = (font: string) => {
     window.localStorage.setItem('font', font)
     window.location.reload();

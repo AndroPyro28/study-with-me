@@ -6,15 +6,15 @@ import moment from 'moment'
 import { Event } from "@prisma/client";
 import { api } from "~/utils/api";
 import Loader from "~/components/Loader";
+import useAuth from "~/hooks/useAuth";
 
 const index = () => {
 
-
+  useAuth()
   const {data, isLoading} = api.event.getAllEventByUserId.useQuery()
 
   if(isLoading) return <div className="flex items-center justify-center h-screen w-screen"><Loader size={50}/></div>
 
-  console.log('hello', isLoading, data)
   const renderSidebarEvent = (event: Event) => {
     const dateObj = new Date(event.timeStart)
     dateObj.setDate(dateObj.getDate() + 1);
