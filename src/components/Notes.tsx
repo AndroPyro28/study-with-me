@@ -14,7 +14,7 @@ interface Props {
 }
 const Notes = ({handler, openAddReviewerModal}: Props) => {
   const [search ,setSearch] = useState('')
-
+  const context = api.useContext()
   const {data, isLoading, isFetched, isError } = api.reviewer.getAllReviewer.useQuery(search);
 
   const NoteTableHeader = (
@@ -33,7 +33,6 @@ const Notes = ({handler, openAddReviewerModal}: Props) => {
   }
 
   const router = useRouter();
-  const context = api.useContext()
   
   const {mutate: mutateDelete} = api.reviewer.deleteReviewer.useMutation({
     onSettled: () => {

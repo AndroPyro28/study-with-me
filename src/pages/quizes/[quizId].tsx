@@ -20,6 +20,10 @@ const quizDetail = () => {
   const context = api.useContext();
   const router = useRouter();
   const [displayConfirmModal, setDisplayConfirmModal] = useState(false);
+  const { isLoading, data } = api.quiz.getQuizById.useQuery(
+    query.quizId! as string
+  );
+
   const QuestionaireCreateContainer = () => {
     const [choicePopulate, setChoicePopulate] = useState<string[]>([]);
     const [answer, setAnswer] = useState<string>("");
@@ -43,14 +47,16 @@ const quizDetail = () => {
 
     const insertQuestionaire = () => {
       if (!answer || !question)
-        return toast("You must fill the answer and question", {type: 'warning'});
+        return toast("You must fill the answer and question", {
+          type: "warning",
+        });
       const isChoiceFilled = choicePopulate.every((value) => value != "");
       if (
         selectedType === "MULTIPLE_CHOICES" &&
         !isChoiceFilled &&
         choicePopulate.length < 4
       ) {
-        return toast("You must fill choices", {type: 'warning'});
+        return toast("You must fill choices", { type: "warning" });
       }
 
       mutateAdd({
@@ -385,30 +391,28 @@ const quizDetail = () => {
     );
   };
 
-  const { isLoading, data } = api.quiz.getQuizById.useQuery(query.quizId! as string);
-
-  if(isLoading) {
-    return <LoaderModal/>
+  if (isLoading) {
+    return <LoaderModal />;
   }
 
-  if(!data?.posted && !data?.isSubmitted) {
+  if (!data?.posted && !data?.isSubmitted) {
     return (
       <div className="flex h-[95vh] items-center gap-10 overflow-hidden bg-[rgb(222,223,232)] px-10">
-          <>
-            <QuestionaireCreateContainer />
-            <QuestionaireListContainer />
-          </>
+        <>
+          <QuestionaireCreateContainer />
+          <QuestionaireListContainer />
+        </>
       </div>
     );
-  } 
-
-  if(data?.posted && !data?.isSubmitted) {
-    return <AnswerQuiz data={data} />
   }
-  if(data?.posted && data?.isSubmitted) {
-    return <ScoreQuiz data={data} />
+
+  if (data?.posted && !data?.isSubmitted) {
+    return <AnswerQuiz data={data} />;
+  }
+  if (data?.posted && data?.isSubmitted) {
+    return <ScoreQuiz data={data} />;
   } else {
-    router.replace('/quizes')
+    router.replace("/quizes");
   }
 };
 
