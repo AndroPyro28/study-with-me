@@ -7,18 +7,25 @@ import { UpdateEventDto } from "./dto/updateEvent.dto";
 export const eventRouter = createTRPCRouter({
     addEvent: privateProcedure.input(AddEventDto).mutation(async ({ctx, input}) => {
         const event = await createOneEvent(input, ctx.currentUser.id);
+        console.log('add', event)
         return event
     }),
     getAllEventByUserId: privateProcedure.query(async ({ctx}) => {
         const event = await findAllEventByUserId(ctx.currentUser.id)
+        console.log('get', event)
+
         return event
     }),
     updateEvent: privateProcedure.input(UpdateEventDto).mutation(async ({ctx, input}) => {
         const event = await updateEvent(input, ctx.currentUser.id)
+        console.log('update', event)
+
         return event
     }),
     deleteEvent: privateProcedure.input(z.string()).mutation(async ({ctx, input}) => {
         const event = await deleteEvent(input, ctx.currentUser.id)
+        console.log('delete', event)
+
         return event
     }),
 });
