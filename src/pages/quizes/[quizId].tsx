@@ -35,7 +35,7 @@ const quizDetail = () => {
     ];
 
     const [selectedType, setSelectedType] = useState<objective_test_type>();
-    const { mutate: mutateAdd } =
+    const { mutate: mutateAdd, isLoading: isLoadingAdd} =
       api.questionaire.createOneQuestionaire.useMutation({
         onSettled: () => {
           setChoicePopulate([]);
@@ -225,8 +225,9 @@ const quizDetail = () => {
         <button
           className="mx-auto mt-10 flex w-fit self-center rounded-md bg-[rgb(55,148,83)] px-[20px] py-[10px] text-white"
           onClick={insertQuestionaire}
+          disabled={isLoadingAdd}
         >
-          Insert Questionare
+          {isLoadingAdd ? <Loader size={20} /> : `Insert Questionare`}
         </button>
       </div>
     );
