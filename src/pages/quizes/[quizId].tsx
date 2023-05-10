@@ -12,6 +12,7 @@ import useAuth from "~/hooks/useAuth";
 import Loader from "~/components/Loader";
 import AnswerQuiz from "~/components/AnswerQuiz";
 import ScoreQuiz from "~/components/ScoreQuiz";
+import LoaderModal from "~/components/LoaderModal";
 
 const quizDetail = () => {
   useAuth();
@@ -387,19 +388,17 @@ const quizDetail = () => {
 
   const { isLoading, data } = api.quiz.getQuizById.useQuery(query.quizId! as string);
 
+  if(isLoading) {
+    return <LoaderModal/>
+  }
+
   if(!data?.posted && !data?.isSubmitted) {
     return (
       <div className="flex h-[95vh] items-center gap-10 overflow-hidden bg-[rgb(222,223,232)] px-10">
-        {isLoading ? (
-          <div className="m-auto">
-            <Loader size={50} />
-          </div>
-        ) : (
           <>
             <QuestionaireCreateContainer />
             <QuestionaireListContainer />
           </>
-        )}
       </div>
     );
   } 

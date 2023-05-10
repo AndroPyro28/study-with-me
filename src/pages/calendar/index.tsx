@@ -23,7 +23,6 @@ const index = () => {
       <li key={event.id} className="flex justify-between">
         <div className="font-bold">
             {moment(date).format('ll')} {time}
-            {/* {date} {time} */}
         </div>
         <div>-</div>
         <div>{event.title}</div>
