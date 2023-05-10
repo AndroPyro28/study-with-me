@@ -40,7 +40,9 @@ function Timer({ data }: Props) {
     const intervalId = setInterval(() => {
       if (timeLeft > 0) {
         setTimeLeft(timeLeft - 1);
-      } 
+      } else {
+        handleSave()
+      }
     }, 1000);
 
     return () => {
