@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -17,8 +17,6 @@ interface Props {
 const Calendar = ({ currentEvents}: Props) => {
 
   const FullCalendar = useMemo(() => dynamic(() => import('@fullcalendar/react'), { ssr: false }),[]);
-
-  console.log(FullCalendar)
 
   const handleDateSelect = (selectInfo: any) => {
     let title = prompt("Please enter a new title for your event");
