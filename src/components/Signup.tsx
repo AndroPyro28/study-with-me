@@ -96,19 +96,20 @@ const Signup = ({ handleChangeContent }: Props) => {
                   <Field
                     type="text"
                     name="firstname"
-                    className=" rounded-md border border-gray-500 px-2 py-1 text-black outline-none "
+                    className=" rounded-md border border-black px-2 py-1 text-black outline-none"
                     placeholder="Firstname"
                   />
-
                   {errors.firstname && (
                     <label className="label">
-                      <span className="label-text text-error  text-red-500">
+                      <span className="label-text text-error text-red-500">
                         {errors.firstname}
                       </span>
                     </label>
                   )}
                 </div>
+              </div>
 
+              <div className="my-6 flex justify-between gap-2">
                 <div className="flex flex-1 flex-col">
                   <Field
                     type="text"
@@ -142,7 +143,9 @@ const Signup = ({ handleChangeContent }: Props) => {
                     </label>
                   )}
                 </div>
+              </div>
 
+              <div className="my-6 flex justify-between gap-2">
                 <div className="flex flex-1 flex-col">
                   <Field
                     type="email"
@@ -176,7 +179,9 @@ const Signup = ({ handleChangeContent }: Props) => {
                     </label>
                   )}
                 </div>
+              </div>
 
+              <div className="my-6 flex justify-between gap-2">
                 <div className="flex flex-1 flex-col">
                   <Field
                     type="password"
@@ -193,6 +198,7 @@ const Signup = ({ handleChangeContent }: Props) => {
                   )}
                 </div>
               </div>
+            
               <span
                 className=" cursor-pointer text-gray-900"
                 onClick={() => handleChangeContent("login")}
