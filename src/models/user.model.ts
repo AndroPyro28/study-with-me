@@ -1,6 +1,7 @@
 import { ContactFormInputs } from "~/components/Signup";
 import { user } from "./index";
 import { Argonhash } from "~/helper/Argon.helper";
+import { UpdateProfileSchema } from "~/pages/profile";
 
 export const findUserByEmail = async (email: string) => {
   const userData = await user.findUnique({
@@ -51,3 +52,25 @@ export const createUserOne = async (data: ContactFormInputs) => {
 
   return userData;
 };
+
+export const updateUser = async (data: UpdateProfileSchema, userId: number) => {
+  const { email, firstname, lastname, username} = data;
+
+  const userData = await user.update({
+    where: {
+      id: userId
+    },
+    data: {
+      email,
+      username,
+      profile: {
+        update: {
+          firstname,
+          lastname
+        }
+      },
+    }
+  })
+  return userData
+
+}

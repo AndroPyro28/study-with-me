@@ -5,6 +5,7 @@ import { eventRouter } from "./routers/event/event.router";
 import { quizRouter } from "./routers/quiz/quiz.router";
 import { questionaireRouter } from "./routers/questionaire/questionaire.router";
 import { answerRouter } from "./routers/answer/answer.router";
+import { userRouter } from "./routers/user/user.router";
 
 /**
  * This is the primary router for your server.
@@ -17,7 +18,8 @@ export const appRouter = createTRPCRouter({
   event: eventRouter,
   quiz: quizRouter,
   questionaire: questionaireRouter,
-  answer: answerRouter
+  answer: answerRouter,
+  user: userRouter
 });
 
 // export type definition of API
