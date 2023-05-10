@@ -23,7 +23,7 @@ export type updateSchemaType = TypeOf<typeof updateReviewerSchema>;
   
 
 function Timer({ data }: Props) {
-  const [timeLeft, setTimeLeft] = useState(Number(data?.time_limit) ?? 10);
+  const [timeLeft, setTimeLeft] = useState(Number(data?.time_limit));
   const [notesContent, setNotesContent] = useState(data?.notes ?? '');
   const ReactQuill = useMemo(() => dynamic(() => import('react-quill'), { ssr: false }),[]);
 
@@ -40,9 +40,10 @@ function Timer({ data }: Props) {
     const intervalId = setInterval(() => {
       if (timeLeft > 0) {
         setTimeLeft(timeLeft - 1);
-      } else {
+      } 
+
+      if(Number(data?.time_limit) <= 0) {
         handleSave()
-        // window.location.assign('/study-notes')
       }
     }, 1000);
 
