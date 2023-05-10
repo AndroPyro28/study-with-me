@@ -33,10 +33,11 @@ const Notes = ({handler, openAddReviewerModal}: Props) => {
   }
 
   const router = useRouter();
+  const context = api.useContext()
   
   const {mutate: mutateDelete} = api.reviewer.deleteReviewer.useMutation({
     onSettled: () => {
-      api.useContext().reviewer.invalidate()
+      context.reviewer.getAllReviewer.invalidate()
     }
   })
 
