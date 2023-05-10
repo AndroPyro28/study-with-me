@@ -20,7 +20,9 @@ export const createOneEvent = async (eventInput: AddEventSchema, userId: number)
 }
 
 export const findAllEventByUserId = async (userId: number) => {
-    const today = moment.utc(new Date()).tz('Asia/Manila').format()
+    const date = new Date()
+    date.setDate(date.getDate( ) - 1)
+    const today = moment.utc(date).tz('Asia/Manila').format()
     const eventData = await event.findMany({
         where: {
             userId,
