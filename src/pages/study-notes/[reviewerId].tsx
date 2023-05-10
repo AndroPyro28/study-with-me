@@ -11,12 +11,15 @@ const reviewerDetail = () => {
   const { query } = useRouter();
   const { reviewerId } = query;
 
+  const { data, isLoading, isFetched, isError } =
+    api.reviewer.getReviewerById.useQuery(reviewerId?.toString()!);
+
+  const [hasStarted, setHasStarted] = useState(false)
+
   if (!reviewerId) {
     return <></>;
   }
-  const [hasStarted, setHasStarted] = useState(false)
-  const { data, isLoading, isFetched, isError } =
-    api.reviewer.getReviewerById.useQuery(reviewerId.toString()!);
+  
 
   const handleStart = () => {
     setHasStarted(true)

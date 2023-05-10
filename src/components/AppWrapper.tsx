@@ -12,6 +12,11 @@ interface Props {
 }
 const AppWrapper = ({ children }: Props) => {
   const data = useAuth();
+
+  useEffect(() => {
+    document.body.style.fontFamily = window.localStorage.getItem('font') as string;
+  }, [])
+
   const excludedRoutes = ['/study-notes/[reviewerId]']
   const {pathname} = useRouter();
   return (

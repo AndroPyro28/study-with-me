@@ -8,8 +8,8 @@ export const reviewerRouter = createTRPCRouter({
         const reviewer = await createOneReviewer(input, ctx.currentUser.id)
         return reviewer
     }),
-    getAllReviewer: privateProcedure.query(async ({ctx}) => {
-        const reviewerList = await findAllReviewerByUserId(ctx.currentUser.id);
+    getAllReviewer: privateProcedure.input(z.string()).query(async ({ctx, input}) => {
+        const reviewerList = await findAllReviewerByUserId(ctx.currentUser.id, input);
         return reviewerList
     }),
     getReviewerById: privateProcedure.input(z.string()).query(async({ctx, input}) => {

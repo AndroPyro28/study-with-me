@@ -16,14 +16,16 @@ export const createOneEvent = async (eventInput: AddEventSchema, userId: number)
     })
 
     return eventData;
-
 }
 
 export const findAllEventByUserId = async (userId: number) => {
     const eventData = await event.findMany({
         where: {
-            userId
-        }
+            userId,
+            timeStart: { 
+                gt: new Date()
+            }
+        },
     })
 
     return eventData

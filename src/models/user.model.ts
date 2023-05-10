@@ -7,6 +7,9 @@ export const findUserByEmail = async (email: string) => {
     where: {
       email,
     },
+    include: {
+      profile: true
+    }
   });
   return userData;
 };
@@ -16,6 +19,9 @@ export const findUserById = async (id: number) => {
       where: {
         id,
       },
+      include: {
+        profile: true
+      }
     });
     return userData;
   };

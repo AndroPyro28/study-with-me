@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Cookies from "js-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, logout } from "~/app/features/userSlice";
 
 const NavLinks = () => {
   const [openProfileMenu, setOpenProfileMenu] = useState<boolean>(false);
@@ -8,18 +10,20 @@ const NavLinks = () => {
 
   const handleClickProfileMenu = () => setOpenProfileMenu((prev) => !prev);
   const handleClickHamburgerMenu = () => setOpenHamburgerMenu((prev) => !prev);
-
+  const dispatch = useDispatch();
   const handleLogout = () => {
-    Cookies.remove('userToken');
-    window.location.reload();
-  }
+    dispatch(logout());
+  };
+
+  const user = useSelector(getUser);
+  const { profile, email } = user;
 
   return (
     <nav className="border-gray-200 bg-white dark:bg-gray-900">
       <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
         <a href="#" className="flex items-center">
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
+            src="/assets/logo.png"
             className="mr-3 h-8"
             alt="Flowbite Logo"
           />
@@ -52,20 +56,20 @@ const NavLinks = () => {
               >
                 <div className="px-4 py-3">
                   <span className="block text-sm text-gray-900 dark:text-white">
-                    Bonnie Green
+                    {profile?.firstname} {profile?.lastname}
                   </span>
                   <span className="block truncate  text-sm text-gray-500 dark:text-gray-400">
-                    name@flowbite.com
+                    {email}
                   </span>
                 </div>
                 <ul className="py-2" aria-labelledby="user-menu-button">
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      href="/settings"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       Settings
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a
@@ -108,7 +112,7 @@ const NavLinks = () => {
 
         {openHamburgerMenu && (
           <div
-            className=" w-full items-center justify-between md:hidden md:order-1 md:flex md:w-auto"
+            className=" w-full items-center justify-between md:order-1 md:flex md:hidden md:w-auto"
             id="mobile-menu-2"
           >
             <ul className="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900">
@@ -129,12 +133,21 @@ const NavLinks = () => {
                   Study-notes
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/quizes"
+                  className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+                  aria-current="page"
+                >
+                  Quizes
+                </Link>
+              </li>
             </ul>
           </div>
         )}
 
         <div
-          className=" w-full hidden items-center justify-between md:order-1 md:w-auto md:flex"
+          className=" hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
           id="mobile-menu-2"
         >
           <ul className="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900">
@@ -153,6 +166,15 @@ const NavLinks = () => {
                 aria-current="page"
               >
                 Study-notes
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/quizes"
+                className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+                aria-current="page"
+              >
+                Quizes
               </Link>
             </li>
           </ul>

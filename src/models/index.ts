@@ -1,2 +1,6 @@
 export * from './prisma'
 export * from './user.model'
+export * from './event.model'
+export * from './reviewer.model'
+export * from './quiz.model'
+export * from './questionaire.model'

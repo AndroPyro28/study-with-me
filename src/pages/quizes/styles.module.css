@@ -1,0 +1,59 @@
+.inputQuestionaire {
+    border: none ;
+    border-bottom: solid 2px gray;
+    flex: 1;
+    outline: none;
+    padding: 10px 15px;
+    font-size: 1.5em;
+}
+
+.answerQuestionaire {
+    border: none ;
+    border-bottom: solid 2px gray;
+    flex: 1;
+    outline: none;
+    margin-left: 80px;
+    width: 75%;
+    margin-top: 50px;
+    padding: 10px 15px;
+    border-radius: 1px;
+    font-size: 1.5em;
+}
+
+.selectType {
+    /* px-2 py-3 rounded-md */
+    padding: 5px 10px;
+    border-radius: 10px;
+    outline: none;
+    border: #EAEAEA solid 2px;
+}
+
+.inputChoices {
+    /* w-[80%] ml-[80px]  */
+    width: 100%;
+    height: 100%;
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    border-bottom: solid 2px gray;
+    margin-left: 80px;
+}
+
+.answerData {
+    /* flex flex-1 justify-center w-full */
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    width: 100%;
+    font-size: 0.8em;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    font-style: italic;
+    overflow: hidden;
+       
+}
+
+.modal {
+    @apply fixed left-0 right-0 top-0 z-50 h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden p-4 md:inset-0;
+    background: rgba(0, 0, 0, 0.534);
+}

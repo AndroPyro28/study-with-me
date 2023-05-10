@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import { Reviewer } from "@prisma/client";
 import Timer from "./Timer";
-
+import styles from './style.module.css'
 interface Props {
   data: Reviewer;
 }
@@ -15,15 +15,14 @@ const ReviewerContent = ({ data }: Props) => {
     }, // Remote file
   ];
   return (
-    <div className="flex h-[100vh]">
-
+    <div className={styles.styleReview}>
       {
         data?.image_url && <DocViewer
         documents={docs}
         pluginRenderers={DocViewerRenderers}
         className="h-[50vh] w-[50vw]"
         style={{
-          width: "60vw",
+          width: "100%",
           height: "100vh",
         }}
       />

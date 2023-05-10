@@ -23,14 +23,28 @@
 .textNoteContent {
     display: flex;
     flex-direction: column;
-    width: 100%;
     gap: 10px;
     flex: 2;
     height: 100%;
     margin-top: -50px;
+    max-width:30vw ;
+    @media (max-width:900px) {
+        width: 100vw;
+    }
 }
 
 .textNoteContent > .content {
         height:200px;
         overflow: hidden;
+}
+
+.styleReview {
+    @apply flex h-[100vh] w-screen;
+    @media (max-width: 900px) {
+        flex-direction: column;
+    }
+}
+
+.reviewerList {
+    
 }
