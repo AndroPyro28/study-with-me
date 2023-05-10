@@ -416,7 +416,7 @@ const index = () => {
               </div>
               <div className="rounded-lg border border-gray-300 bg-gray-100 px-6 py-6 shadow-xl">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold text-green-600">Quiz</span>
+                  <span className="text-sm font-bold text-green-600">Total Quiz</span>
                 </div>
                 <div className="mt-6 flex items-center justify-between">
                   <div className="flex flex-col">
@@ -447,7 +447,7 @@ const index = () => {
               <div className="rounded-lg border border-gray-300 bg-gray-100 px-6 py-6 shadow-xl">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-bold text-blue-600">
-                    Events
+                    Total Events
                   </span>
                 </div>
                 <div className="mt-6 flex items-center justify-between">
