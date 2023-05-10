@@ -19,7 +19,7 @@ const Calendar = ({ currentEvents}: Props) => {
   const FullCalendar = useMemo(() => dynamic(() => import('@fullcalendar/react'), { ssr: false }),[]);
 
   console.log(FullCalendar)
-  
+
   const handleDateSelect = (selectInfo: any) => {
     let title = prompt("Please enter a new title for your event");
     let calendarApi = selectInfo.view.calendar;
@@ -102,9 +102,9 @@ const Calendar = ({ currentEvents}: Props) => {
           center: "title",
           right: "dayGridMonth,timeGridWeek,timeGridDay",
         }}
-        validRange={{
-          start: today
-        }}
+        // validRange={{
+        //   start: today
+        // }}
         initialView="dayGridMonth"
         editable={true}
         selectable={true}
