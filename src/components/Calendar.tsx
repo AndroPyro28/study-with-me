@@ -15,7 +15,7 @@ interface Props {
   currentEvents: Event[]
 }
 const Calendar = ({ currentEvents}: Props) => {
-
+  console.log(currentEvents)
   const FullCalendar = useMemo(() => dynamic(() => import('@fullcalendar/react'), { ssr: false }),[]);
 
   const handleDateSelect = (selectInfo: any) => {
