@@ -100,9 +100,9 @@ const Calendar = ({ currentEvents}: Props) => {
           center: "title",
           right: "dayGridMonth,timeGridWeek,timeGridDay",
         }}
-        // validRange={{
-        //   start: today
-        // }}
+        validRange={{
+          start: today
+        }}
         initialView="dayGridMonth"
         editable={true}
         selectable={true}
