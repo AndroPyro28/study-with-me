@@ -5,6 +5,7 @@ import { api } from "~/utils/api";
 import styles from './style.module.css'
 import ReviewerContent from "~/components/ReviewerContent";
 import useAuth from "~/hooks/useAuth";
+import LoaderModal from "~/components/LoaderModal";
 
 const reviewerDetail = () => {
   useAuth()
@@ -19,8 +20,10 @@ const reviewerDetail = () => {
   if (!reviewerId) {
     return <></>;
   }
-  
 
+  if(isLoading) return <LoaderModal />
+  if(isError) return <div>Something went wrong...</div>
+  
   const handleStart = () => {
     setHasStarted(true)
   }
