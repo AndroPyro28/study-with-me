@@ -2,6 +2,7 @@ import { api } from '~/utils/api';
 import { useRouter} from 'next/router'
 import { useDispatch } from 'react-redux';
 import { authenticationSuccess } from '~/app/features/userSlice';
+import LoaderModal from '~/components/LoaderModal';
 const useAuth = () => {
   const dispatch = useDispatch();
     const router = useRouter();
