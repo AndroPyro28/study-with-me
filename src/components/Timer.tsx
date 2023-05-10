@@ -41,10 +41,6 @@ function Timer({ data }: Props) {
       if (timeLeft > 0) {
         setTimeLeft(timeLeft - 1);
       } 
-
-      if(Number(data?.time_limit) <= 0) {
-        handleSave()
-      }
     }, 1000);
 
     return () => {
