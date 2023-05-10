@@ -4,13 +4,14 @@ import DateTimeFormatter from "~/helper/DateTimeFormatter.helper";
 import { api } from "~/utils/api";
 import AddQuizModal from "./AddQuizModal";
 import { useRouter } from "next/router";
+import Loader from "./Loader";
 
 interface Props {
   handler: () => void,
   openAddQuizModal: boolean
 }
 const Quizes = ({handler, openAddQuizModal}: Props) => {
-  const { data } = api.quiz.getAllQuiz.useQuery();
+  const { data, isLoading, isError, isFetched} = api.quiz.getAllQuiz.useQuery();
 
   const QuizTableHeader = (
     <div className="flex justify-evenly text-white">
@@ -55,14 +56,19 @@ const Quizes = ({handler, openAddQuizModal}: Props) => {
       </div>
     );
   };
+  let content;
 
   const fetchQuizes = data?.map((quiz) => <QuizTableData data={quiz} />);
+
+  if(isLoading && !isFetched) content = <Loader size={20} />
+  if(!isLoading && isError) content = <div>Something went wrong...</div>
+  if(!isLoading && isFetched) content = <>{fetchQuizes?.length! > 0 ? fetchQuizes : <div className="text-center m-10 text-xl font-bold">No quiz yet</div>}</>
 
   return (
     <div className="mt-[20px] flex h-auto flex-col rounded-md border bg-white w-[90vw]">
       { openAddQuizModal && <AddQuizModal handler={handler}/>}
       {QuizTableHeader}
-      {fetchQuizes}
+      {content}
     </div>
   );
 };
