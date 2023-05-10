@@ -1,6 +1,7 @@
 import { AddEventSchema } from '~/server/api/routers/event/dto/addEvent.dto';
 import {event} from './prisma';
 import { UpdatEventSchema } from '~/server/api/routers/event/dto/updateEvent.dto';
+import moment from 'moment-timezone';
 
 export const createOneEvent = async (eventInput: AddEventSchema, userId: number) => {
 
@@ -19,15 +20,18 @@ export const createOneEvent = async (eventInput: AddEventSchema, userId: number)
 }
 
 export const findAllEventByUserId = async (userId: number) => {
+    const today = moment.utc(new Date()).tz('Asia/Manila').format()
     const eventData = await event.findMany({
         where: {
             userId,
+            timeStart: {
+                gte: today
+            }
         },
         orderBy: {
             timeStart: 'desc'
         }
     })
-
     return eventData
 }
 
