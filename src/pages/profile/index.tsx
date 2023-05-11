@@ -69,7 +69,7 @@ const index = () => {
   return (
     <div className="h-full bg-gray-200 p-8">
       <div className="rounded-lg bg-white pb-8 shadow-xl">
-        {/* <div
+        <div
           x-data="{ openSettings: false }"
           className="absolute right-12 mt-4 rounded"
         >
@@ -175,7 +175,7 @@ const index = () => {
               </button>
             </div>
           </div>
-        </div> */}
+        </div>
         <div className="h-[250px] w-full">
           <img
             src="https://vojislavd.com/ta-template-demo/assets/img/profile-background.jpg"
