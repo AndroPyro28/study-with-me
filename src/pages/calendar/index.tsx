@@ -42,7 +42,7 @@ const index = () => {
   };
 
   return (
-    <div className="flex h-[auto] w-[100vw] bg-white p-5">
+    <div className="flex h-[100vh] w-[100vw] bg-white p-5">
       <Calendar currentEvents={data as Event[]} />
       <EventSideBar />
     </div>

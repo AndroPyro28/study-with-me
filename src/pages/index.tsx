@@ -19,7 +19,7 @@ const Home: NextPage = () => {
   
   const contentPage = content === 'login' ? <Login handleChangeContent={handleChangeContent as changeContent }  /> : <Signup handleChangeContent={handleChangeContent as changeContent} />
   if(isLoading) return <LoaderModal />
-  if(isError) return <div>Something went wrong...</div>
+  // if(isError) return <div>Something went wrong...</div>
   return (
       <main className="flex min-h-screen flex-col items-center justify-center">
         {contentPage}
