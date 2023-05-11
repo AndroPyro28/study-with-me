@@ -20,9 +20,9 @@ const Quizes = ({handler, openAddQuizModal}: Props) => {
     <div className="flex justify-evenly text-white">
       <div className="flex-1 bg-gray-600 p-5 text-center">id</div>
       <div className="flex-1 bg-gray-600 p-5 text-center">Title</div>
-      <div className="flex-1 bg-gray-600 p-5 text-center">Status</div>
-      <div className="flex-1 bg-gray-600 p-5 text-center">Score</div>
-      <div className="flex-1 bg-gray-600 p-5 text-center">Date Created</div>
+      <div className="flex-1 bg-gray-600 p-5 text-center max-[500px]:hidden ">Status</div>
+      <div className="flex-1 bg-gray-600 p-5 text-center max-[800px]:hidden ">Score</div>
+      <div className="flex-1 bg-gray-600 p-5 text-center max-[800px]:hidden ">Date Created</div>
       <div className="flex-1 bg-gray-600 p-5 text-center">Action</div>
     </div>
   );
@@ -58,13 +58,13 @@ const Quizes = ({handler, openAddQuizModal}: Props) => {
         <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800" onClick={() => window.location.assign(`/quizes/${data.id}`)}>
           {data.title}
         </div>
-        <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800" onClick={() => window.location.assign(`/quizes/${data.id}`)}>
+        <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800 max-[500px]:hidden" onClick={() => window.location.assign(`/quizes/${data.id}`)}>
           {!data?.isSubmitted ? data?.posted ? 'Ready' : 'Not Ready' : 'Submitted'}
         </div>
-        <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800" onClick={() => window.location.assign(`/quizes/${data.id}`)}>
+        <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800 max-[800px]:hidden " onClick={() => window.location.assign(`/quizes/${data.id}`)}>
           {data?.isSubmitted ? `${data?.score} / ${data?.question?.length}` : `---`}
         </div>
-        <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800" onClick={() => window.location.assign(`/quizes/${data.id}`)}>
+        <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800 max-[800px]:hidden" onClick={() => window.location.assign(`/quizes/${data.id}`)}>
           {date} {time}
         </div>
         <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800">

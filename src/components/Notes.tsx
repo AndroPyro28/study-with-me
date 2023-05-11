@@ -21,9 +21,9 @@ const Notes = ({handler, openAddReviewerModal}: Props) => {
     <div className="flex justify-evenly text-white">
       <div className="flex-1 bg-gray-600 p-5 text-center">Reviewer ID</div>
       <div className="flex-1 bg-gray-600 p-5 text-center">Topic Title</div>
-      <div className="flex-1 bg-gray-600 p-5 text-center">File type</div>
-      <div className="flex-1 bg-gray-600 p-5 text-center">Time Left</div>
-      <div className="flex-1 bg-gray-600 p-5 text-center">Date Created</div>
+      <div className="flex-1 bg-gray-600 p-5 text-center max-[500px]:hidden">File type</div>
+      <div className="flex-1 bg-gray-600 p-5 text-center max-[800px]:hidden">Time Left</div>
+      <div className="flex-1 bg-gray-600 p-5 text-center max-[800px]:hidden">Date Created</div>
       <div className="flex-1 bg-gray-600 p-5 text-center">Action</div>
     </div>
   );
@@ -57,9 +57,9 @@ const timeLeft = `0${hours}:${minutes < 10 ? `0${minutes}` : minutes}:${remainin
     return <div className="flex justify-evenly text-white cursor-pointer even:bg-gray-200 items-center" >
       <div className="flex-1 p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap"onClick={() => router.push(`study-notes/${id}`)} >{id}</div>
       <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap"onClick={() => router.push(`study-notes/${id}`)} >{title}</div>
-      <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap"onClick={() => router.push(`study-notes/${id}`)} >{ext ? ext?.toUpperCase(): 'NONE'}</div>
-      <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap"onClick={() => router.push(`study-notes/${id}`)} >{timeLeft}</div>
-      <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap"onClick={() => router.push(`study-notes/${id}`)}>{date} {time}</div>
+      <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap max-[500px]:hidden"onClick={() => router.push(`study-notes/${id}`)} >{ext ? ext?.toUpperCase(): 'NONE'}</div>
+      <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap max-[800px]:hidden"onClick={() => router.push(`study-notes/${id}`)} >{timeLeft}</div>
+      <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap max-[800px]:hidden"onClick={() => router.push(`study-notes/${id}`)}>{date} {time}</div>
       <div className="flex-1  p-5 text-center text-gray-800 overflow-hidden text-ellipsis whitespace-wrap"><button className="bg-red-400 px-[10px] py-[5px] rounded-md hover:bg-red-200" onClick={() => handleDeleteReviewer(id)}> <FontAwesomeIcon icon={faRemove} /> Delete</button></div>
     </div>
   }

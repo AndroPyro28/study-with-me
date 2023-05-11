@@ -147,7 +147,7 @@ const quizDetail = () => {
     };
 
     return (
-      <div className="h-[80vh] w-[70vw] rounded-lg bg-white shadow-xl">
+      <div className="h-[80vh] w-[68vw] rounded-lg bg-white shadow-xl min-h-[50vh] max-[950px]:w-[100vw]">
         <div className="flex justify-between gap-5 p-5">
           <div className="flex items-center justify-center rounded-full  bg-[rgb(32,77,67)] p-2 text-sm text-white">
             <FontAwesomeIcon
@@ -278,7 +278,7 @@ const quizDetail = () => {
     const handleDisplayModal = () => setDisplayConfirmModal((prev) => !prev);
 
     return (
-      <div className="flex h-[80vh] w-[30vw] flex-col rounded-lg bg-white py-[20px] text-black shadow-xl">
+      <div className="flex h-[80vh] w-[30vw] flex-col rounded-lg bg-white py-[20px] text-black shadow-xl max-[950px]:w-[100vw]">
         {displayConfirmModal && (
           <ConfirmModal handleDisplayModal={handleDisplayModal} />
         )}
@@ -329,7 +329,7 @@ const quizDetail = () => {
 
     return (
       <div id="popup-modal" className={styles.modal}>
-        <div className="absolute bottom-0 left-0 right-0 top-0 m-auto h-fit max-h-full w-full max-w-md">
+        <div className="absolute bottom-0 left-0 right-0 top-0 z-10 m-auto h-fit max-h-full w-full max-w-md max-[950px]:h-[100vh]">
           <div className="relative  rounded-lg bg-white shadow dark:bg-gray-700">
             <button
               type="button"
@@ -398,11 +398,9 @@ const quizDetail = () => {
 
   if (!data?.posted && !data?.isSubmitted) {
     return (
-      <div className="flex h-[95vh] items-center gap-10 overflow-hidden bg-[rgb(222,223,232)] px-10">
-        <>
+      <div className="flex h-[95vh] items-center gap-5 overflow-hidden bg-[rgb(222,223,232)] px-5 max-[950px]:flex-col max-[950px]:h-[auto]">
           <QuestionaireCreateContainer />
           <QuestionaireListContainer />
-        </>
       </div>
     );
   }

@@ -18,6 +18,7 @@ const ReviewerContent = ({ data }: Props) => {
     <div className={styles.styleReview}>
       {
         data?.image_url && <DocViewer
+        
         documents={docs}
         pluginRenderers={DocViewerRenderers}
         className="h-[50vh] w-[50vw]"
@@ -25,6 +26,7 @@ const ReviewerContent = ({ data }: Props) => {
           width: "100%",
           height: "100vh",
         }}
+        
       />
       }
       

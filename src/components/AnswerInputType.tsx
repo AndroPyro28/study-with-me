@@ -58,7 +58,7 @@ const AnswerInputType = ({
             <div
               className={`w-[10%] cursor-pointer gap-1  text-center ${
                 answer == choice.choice ? ` bg-[rgb(177,208,210)] ` : ` bg-red-100 `
-              } rounded-md hover:bg-[#EAEAEA]`}
+              } w-fit rounded-md hover:bg-[#EAEAEA]`}
               onClick={() => handleChange(choice.choice)}
             >
               <span className="m-1 text-2xl">{choice.choice}</span>
@@ -75,7 +75,7 @@ const AnswerInputType = ({
         <div
           className={`w-[10%] cursor-pointer gap-1  text-center ${
             answer == 'TRUE' ? ` bg-[rgb(177,208,210)] ` : ` bg-red-100 `
-          } rounded-md hover:bg-[#EAEAEA]`}
+          } w-fit rounded-md hover:bg-[#EAEAEA]`}
           onClick={() => handleChange("TRUE")}
         >
           <span className="m-1 text-2xl">{"True"}</span>
@@ -84,7 +84,7 @@ const AnswerInputType = ({
         <div
           className={`w-[10%] cursor-pointer gap-1  text-center ${
             answer == 'FALSE' ? ` bg-[rgb(177,208,210)] ` : ` bg-red-100 `
-          } rounded-md hover:bg-[#EAEAEA]`}
+          } w-fit rounded-md hover:bg-[#EAEAEA]`}
           onClick={() => handleChange("FALSE")}
         >
           <span className="m-1 text-2xl">{"false"}</span>

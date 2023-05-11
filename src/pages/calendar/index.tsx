@@ -7,7 +7,7 @@ import { Event } from "@prisma/client";
 import { api } from "~/utils/api";
 import Loader from "~/components/Loader";
 import useAuth from "~/hooks/useAuth";
-
+import styles from './style.module.css'
 const index = () => {
 
   useAuth()
@@ -32,7 +32,7 @@ const index = () => {
 
   const EventSideBar = () => {
     return (
-      <div className="demo-app-sidebar-section w-[30vw] flex flex-col items-center text-sm">
+      <div className={styles.event__sidebar}>
         <h2>All Events ({data?.length})</h2>
         <div className="mt-20 w-[70%]">
             <ul>{data?.map(renderSidebarEvent)}</ul>
@@ -42,7 +42,7 @@ const index = () => {
   };
 
   return (
-    <div className="flex h-[100vh] w-[100vw] bg-white p-5">
+    <div className={styles.calendar__container}>
       <Calendar currentEvents={data as Event[]} />
       <EventSideBar />
     </div>

@@ -81,7 +81,7 @@ function AnswerQuiz({ data }: Props) {
       {
         loading && <LoaderModal />
       }
-      <div className="relative flex h-[70vh] w-[70vw] flex-col rounded-lg bg-white shadow-2xl">
+      <div className="relative flex h-[70vh] w-[70vw] flex-col rounded-lg bg-white shadow-2xl max-[900px]:w-[100vw]">
         <div className="mt-20 flex w-[80%] flex-col self-center">
           <h1 className="mt-10 text-3xl">
             {currentPage + 1}). {data?.question[currentPage]?.question}
