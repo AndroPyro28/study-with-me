@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import Loader from "./Loader";
 import { UnAuthorizeError } from "~/helper/Unauthorize.helper";
+import { env } from "~/env.mjs";
 
 const initialValues = {
   title: "",
@@ -46,7 +47,7 @@ const AddNoteModal = ({handler}: Props) => {
       const formData = new FormData();
       formData.append("file", values.file as any);
       formData.append("upload_preset", "online-student-reviewer");
-      const res = await axios.post(`https://api.cloudinary.com/v1_1/iamprogrammer/auto/upload`, formData,{
+      const res = await axios.post(env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL, formData,{
         headers: { 'X-Requested-With': 'XMLHttpRequest' },
       });
       values.image_url = res.data.url;
