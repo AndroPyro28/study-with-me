@@ -23,8 +23,8 @@ const NavLinks = () => {
       <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
         <a href="#" className="flex items-center">
           <img
-            src="/assets/logo.png"
-            className="mr-3 h-8"
+            src="/assets/logo.jpg"
+            className="mr-5 h-11 w-11 object-cover scale-150"
             alt="Flowbite Logo"
           />
           <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">

@@ -5,6 +5,9 @@ import { api } from "~/utils/api";
 import AddQuizModal from "./AddQuizModal";
 import { useRouter } from "next/router";
 import Loader from "./Loader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRemove } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 
 interface Props {
   handler: () => void,
@@ -20,6 +23,7 @@ const Quizes = ({handler, openAddQuizModal}: Props) => {
       <div className="flex-1 bg-gray-600 p-5 text-center">Status</div>
       <div className="flex-1 bg-gray-600 p-5 text-center">Score</div>
       <div className="flex-1 bg-gray-600 p-5 text-center">Date Created</div>
+      <div className="flex-1 bg-gray-600 p-5 text-center">Action</div>
     </div>
   );
 
@@ -30,28 +34,41 @@ const Quizes = ({handler, openAddQuizModal}: Props) => {
       question: Question[];
     };
   };
-
-
   const router = useRouter();
+  const context = api.useContext()
+  const {mutate: mutateDelete} = api.quiz.deleteQuiz.useMutation({
+    onSettled: () => {
+      context.quiz.getAllQuiz.invalidate()
+    },
+    onError: () => {
+      toast('Something went wrong...', {type: 'error'})
+    },
+    onSuccess: () => {
+      toast('Quiz Deleted', {type: 'success'})
+    }
+  })
 
   const QuizTableData = ({ data }: QuizProps) => {
     const { time, date } = DateTimeFormatter(data?.createdAt + "");
     return (
-      <div className="flex cursor-pointer items-center justify-evenly text-white even:bg-gray-200" onClick={() => window.location.assign(`/quizes/${data.id}`)}>
-        <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800">
+      <div className="flex cursor-pointer items-center justify-evenly text-white even:bg-gray-200" >
+        <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800" onClick={() => window.location.assign(`/quizes/${data.id}`)}>
           {data.id}
         </div>
-        <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800">
+        <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800" onClick={() => window.location.assign(`/quizes/${data.id}`)}>
           {data.title}
         </div>
-        <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800">
+        <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800" onClick={() => window.location.assign(`/quizes/${data.id}`)}>
           {!data?.isSubmitted ? data?.posted ? 'Ready' : 'Not Ready' : 'Submitted'}
         </div>
-        <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800">
+        <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800" onClick={() => window.location.assign(`/quizes/${data.id}`)}>
           {data?.isSubmitted ? `${data?.score} / ${data?.question?.length}` : `---`}
         </div>
-        <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800">
+        <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800" onClick={() => window.location.assign(`/quizes/${data.id}`)}>
           {date} {time}
+        </div>
+        <div className="whitespace-wrap  flex-1 overflow-hidden text-ellipsis p-5 text-center text-gray-800">
+          <button className="bg-red-400 px-[10px] py-[5px] rounded-md hover:bg-red-200" onClick={() => mutateDelete(data?.id)}><FontAwesomeIcon  icon={faRemove} /> Delete</button>
         </div>
       </div>
     );

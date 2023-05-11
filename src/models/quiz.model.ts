@@ -75,3 +75,14 @@ export const submitQuiz = async (id: string, totalScore: number) => {
 
     return quizData
 }
+
+
+export const deleteQuiz = async (id: string, userId: number) => {
+    const quizData = await quiz.delete({
+        where: {
+            id,
+        },
+    });
+
+    return quizData
+}

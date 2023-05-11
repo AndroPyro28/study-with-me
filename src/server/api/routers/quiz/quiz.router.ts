@@ -3,13 +3,12 @@ import z from "zod";
 import { addQuizDto } from "~/components/AddQuizModal";
 import {
   createOneQiuz,
+  deleteQuiz,
   findAllQuizByUserId,
   getQuizById,
   postQUiz,
   submitQuiz,
 } from "~/models";
-import shuffleArray from "~/helper/shuffle.helper";
-import { Choice, Question } from "@prisma/client";
 import { submitAnswerDto } from "../answer/dto/submitAnswer.dto";
 import {
   findAnswerByQuizIdAndQuestionId,
@@ -37,12 +36,6 @@ export const quizRouter = createTRPCRouter({
     .input(z.string().cuid())
     .query(async ({ ctx, input }) => {
       const quiz = await getQuizById(input, ctx.currentUser.id);
-      // if(quiz) {
-      //     const shuffledQuestionaire = shuffleArray(quiz?.question!) as (Question & {
-      //         choice: Choice[];
-      //     })[] | undefined;
-      //     quiz.question = shuffledQuestionaire!
-      // }
       return quiz;
     }),
   quizMarkSubmitted: privateProcedure
@@ -80,4 +73,9 @@ export const quizRouter = createTRPCRouter({
 
       return quizSubmitted;
     }),
+    deleteQuiz: privateProcedure.input(z.string().cuid()).mutation(async ({input, ctx}) => {
+      const deletedQuiz = await deleteQuiz(input, ctx.currentUser.id);
+      console.log(deletedQuiz)
+      return deletedQuiz
+    })
 });
