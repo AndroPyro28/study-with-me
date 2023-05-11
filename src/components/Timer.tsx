@@ -68,7 +68,7 @@ function Timer({ data }: Props) {
   }, [])
   
   return (
-    <div className=" overflow-y-hidden w-[40vw] max-[900px]:w-[100vw] max-[900px]:overflow-x-hidden">
+    <div className=" overflow-y-hidden w-[100vw] max-[900px]:w-[100vw] max-[900px]:overflow-x-hidden">
       <h1 className="text-white text-5xl text-center mt-[20px] mb-[-20px] ">{data?.title}</h1>
       <div className="mx-[50px] my-[100px] flex h-fit items-center gap-5 text-center text-2xl text-white">
         <FontAwesomeIcon icon={faClock} /> {hours.toString().padStart(2, "0")}:
