@@ -63,7 +63,7 @@
 }
 
 .modal {
-    @apply fixed left-0 right-0 top-0 z-50 max-h-full overflow-y-auto overflow-x-hidden h-screen p-4 md:inset-0;
+    @apply fixed left-0 top-0 z-50 max-h-screen w-screen overflow-y-auto overflow-x-hidden h-screen p-4 md:inset-0;
     background: rgba(0, 0, 0, 0.534);
 
     @media (max-width:950px) {

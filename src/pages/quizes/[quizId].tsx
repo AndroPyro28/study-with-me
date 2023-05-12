@@ -19,10 +19,11 @@ const quizDetail = () => {
   const { query } = useRouter();
   const context = api.useContext();
   const router = useRouter();
-  const [displayConfirmModal, setDisplayConfirmModal] = useState(false);
   const { isLoading, data } = api.quiz.getQuizById.useQuery(
     query.quizId! as string
   );
+  const [displayConfirmModal, setDisplayConfirmModal] = useState(false);
+  const handleDisplayModal = () => setDisplayConfirmModal((prev) => !prev);
 
   const QuestionaireCreateContainer = () => {
     const [choicePopulate, setChoicePopulate] = useState<string[]>([]);
@@ -276,13 +277,10 @@ const quizDetail = () => {
       );
     });
 
-    const handleDisplayModal = () => setDisplayConfirmModal((prev) => !prev);
 
     return (
       <div className="flex h-[80vh] w-[30vw] flex-col rounded-lg bg-white py-[20px] text-black shadow-xl max-[950px]:w-[100vw]">
-        {displayConfirmModal && (
-          <ConfirmModal handleDisplayModal={handleDisplayModal} />
-        )}
+        
         <h1 className="py-5 text-center text-4xl font-bold">
           Questionaires Created
         </h1>
@@ -330,8 +328,8 @@ const quizDetail = () => {
 
     return (
       <div id="popup-modal" className={styles.modal}>
-        <div className="absolute bottom-0 left-0 right-0 top-0 z-10 m-auto h-fit max-h-full w-full max-w-md max-[950px]:h-[100vh]">
-          <div className="relative  rounded-lg bg-white shadow dark:bg-gray-700">
+        <div className="absolute left-0 right-0 top-0 z-10 m-auto h-fit max-h-full w-full max-w-md max-[950px]:h-[100vh]">
+          <div className="relative rounded-lg bg-white shadow dark:bg-gray-700">
             <button
               type="button"
               className="absolute right-2.5 top-3 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
@@ -399,8 +397,11 @@ const quizDetail = () => {
 
   if (!data?.posted && !data?.isSubmitted) {
     return (
-      <div className="flex h-[95vh] items-center gap-5 overflow-hidden bg-[rgb(222,223,232)] px-5 max-[950px]:flex-col max-[950px]:h-[auto]">
+      <div className="flex h-[95vh] items-center gap-5 overflow-hidden bg-[rgb(222,223,232)] px-5 max-[950px]:flex-col max-[950px]:h-[100vh]">
           <QuestionaireCreateContainer />
+          {displayConfirmModal && (
+          <ConfirmModal handleDisplayModal={handleDisplayModal} />
+        )}
           <QuestionaireListContainer />
       </div>
     );
