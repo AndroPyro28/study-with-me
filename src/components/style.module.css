@@ -59,7 +59,7 @@
 }
 
 .styleReview {
-    @apply flex w-screen h-screen;
+    @apply flex w-screen;
     overflow-y: auto;
     @media (max-width: 900px) {
         flex-direction: column;
