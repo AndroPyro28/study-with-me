@@ -86,7 +86,8 @@ function Timer({ data }: Props) {
           id="reactQuill"
           style={{
             resize: 'horizontal',
-            height: "75vh",
+            minHeight:'auto',
+            // height: "75vh",
             maxHeight:'75vh',
             width: '100vw',
             maxWidth: '100%',
