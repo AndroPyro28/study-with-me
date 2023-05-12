@@ -24,7 +24,8 @@ const ReviewerContent = ({ data }: Props) => {
         className="h-[50vh] w-[50vw]"
         style={{
           width: "100%",
-          height: "100%",
+          height: "auto",
+          minHeight:'70vh',
           flex:1,
         }}
         
