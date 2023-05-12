@@ -33,7 +33,7 @@ const index = () => {
   const EventSideBar = () => {
     return (
       <div className={styles.event__sidebar}>
-        <h2>All Events ({data?.length})</h2>
+        <h2 className="font-bold text-xl">All Events ({data?.length})</h2>
         <div className="mt-20 w-[70%]">
             <ul>{data?.map(renderSidebarEvent)}</ul>
         </div>

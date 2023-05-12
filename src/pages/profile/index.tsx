@@ -69,113 +69,6 @@ const index = () => {
   return (
     <div className="h-full bg-gray-200 p-8">
       <div className="rounded-lg bg-white pb-8 shadow-xl">
-        {/* <div
-          x-data="{ openSettings: false }"
-          className="absolute right-12 mt-4 rounded"
-        >
-          <button
-            className="rounded border border-gray-400 bg-gray-100 bg-opacity-10 p-2 text-gray-300 hover:bg-opacity-20 hover:text-gray-300"
-            title="Settings"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="3"
-                d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
-              ></path>
-            </svg>
-          </button>
-          <div
-            x-show="openSettings"
-            className="absolute right-0 mt-1 w-40 border border-gray-200 bg-white py-2 shadow-2xl"
-          >
-            <div className="border-b py-2">
-              <p className="mb-1 px-6 text-xs uppercase text-gray-400">
-                Settings
-              </p>
-              <button className="flex w-full items-center space-x-2 px-6 py-1.5 hover:bg-gray-200">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-gray-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
-                  ></path>
-                </svg>
-                <span className="text-sm text-gray-700">Share Profile</span>
-              </button>
-              <button className="flex w-full items-center space-x-2 px-6 py-1.5 hover:bg-gray-200">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-gray-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
-                  ></path>
-                </svg>
-                <span className="text-sm text-gray-700">Block User</span>
-              </button>
-              <button className="flex w-full items-center space-x-2 px-6 py-1.5 hover:bg-gray-200">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-gray-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-                <span className="text-sm text-gray-700">More Info</span>
-              </button>
-            </div>
-            <div className="py-2">
-              <p className="mb-1 px-6 text-xs uppercase text-gray-400">
-                Feedback
-              </p>
-              <button className="flex w-full items-center space-x-2 px-6 py-1.5 hover:bg-gray-200">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-gray-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                  ></path>
-                </svg>
-                <span className="text-sm text-gray-700">Report</span>
-              </button>
-            </div>
-          </div>
-        </div> */}
         <div className="h-[250px] w-full">
           <img
             src="https://vojislavd.com/ta-template-demo/assets/img/profile-background.jpg"
@@ -217,25 +110,25 @@ const index = () => {
       <div className="my-4 flex flex-col space-y-4 2xl:flex-row 2xl:space-x-4 2xl:space-y-0">
         <div className="flex w-full flex-col 2xl:w-1/3">
           <div className="flex-1 rounded-lg bg-white p-8 shadow-xl">
-            <h4 className="text-xl font-bold text-gray-900">Personal Info</h4>
+            <h4 className="text-xl font-bold text-gray-900 ">Personal Info</h4>
             <ul className="mt-2 text-gray-700">
               <li className="flex border-y py-2">
                 <span className="w-24 font-bold">Full name:</span>
-                <span className="text-gray-700">
+                <span className="text-gray-700 text-ellipsis whitespace-nowrap overflow-hidden">
                   {profile?.firstname} {profile?.lastname}{" "}
                 </span>
               </li>
               <li className="flex border-b py-2">
                 <span className="w-24 font-bold">Joined:</span>
-                <span className="text-gray-700">{format(createdAt)}</span>
+                <span className="text-gray-700 text-ellipsis whitespace-nowrap overflow-hidden">{format(createdAt)}</span>
               </li>
               <li className="flex border-b py-2">
                 <span className="w-24 font-bold">Email:</span>
-                <span className="text-gray-700">{email}</span>
+                <span className="text-gray-700 text-ellipsis whitespace-nowrap overflow-hidden">{email}</span>
               </li>
               <li className="flex border-b py-2">
                 <span className="w-24 font-bold">Languages:</span>
-                <span className="text-gray-700">English, Filipino/Tagalog</span>
+                <span className="text-gray-700 text-ellipsis whitespace-nowrap overflow-hidden">English, Filipino/Tagalog</span>
               </li>
             </ul>
           </div>
@@ -272,8 +165,8 @@ const index = () => {
                     
                   </div>
 
-                  <div className="m-5 flex w-[80%] justify-between">
-                    <div className="flex flex-col">
+                  <div className="m-5 flex w-[80%] justify-between max-md:flex-col">
+                    <div className="flex flex-col max-md:mt-5">
                       {enableUpdate ? (
                         <>
                           {" "}
@@ -281,7 +174,7 @@ const index = () => {
                             type="text"
                             name="firstname"
                             placeholder="Firstname"
-                            className="w-[20em] px-5 py-3 outline-none border border-[#EAEAEA] rounded-md"
+                            className="w-[20em] px-5 py-3 outline-none border border-[#EAEAEA] rounded-md max-md:w-[100%] "
                           />
                           {errors.firstname && (
                             <label className="label">
@@ -292,21 +185,21 @@ const index = () => {
                           )}{" "}
                         </>
                       ) : (
-                        <div className="flex flex-col">
+                        <div className="flex flex-col text-ellipsis whitespace-nowrap overflow-hidden">
                         <label htmlFor="" className="font-bold">Firstname</label>
                         <span>{profile?.firstname}</span>
                         </div>
                       )}
                     </div>
 
-                    <div className="flex flex-col">
+                    <div className="flex flex-col max-md:mt-5">
                       {enableUpdate ? (
                         <>
                           <Field
                             type="text"
                             name="lastname"
                             placeholder="Lastname"
-                            className="w-[20em] px-5 py-3 outline-none border border-[#EAEAEA] rounded-md"
+                            className="w-[20em] px-5 py-3 outline-none border border-[#EAEAEA] rounded-md max-md:w-[100%] "
                           />{" "}
                           {errors.lastname && (
                             <label className="label">
@@ -317,7 +210,7 @@ const index = () => {
                           )}
                         </>
                       ) : (
-                        <div className="flex flex-col text-right">
+                        <div className="flex flex-col text-right max-md:text-start text-ellipsis whitespace-nowrap overflow-hidden">
                         <label htmlFor="" className="font-bold">Lastname</label>
                         <span>{profile?.lastname}</span>
                         </div>
@@ -325,12 +218,12 @@ const index = () => {
                     </div>
                   </div>
 
-                  <div className="m-5 flex w-[80%] justify-between">
-                    <div className="flex flex-col">
+                  <div className="m-5 flex w-[80%] justify-between max-md:flex-col ">
+                    <div className="flex flex-col max-md:mt-5">
                       {enableUpdate ? (
                         <>
                           <Field type="text" name="email" placeholder="Email"
-                          className="w-[20em] px-5 py-3 outline-none border border-[#EAEAEA] rounded-md" />{" "}
+                          className="w-[20em] px-5 py-3 outline-none border border-[#EAEAEA] rounded-md max-md:w-[100%] " />{" "}
                           {errors.email && (
                             <label className="label">
                               <span className="label-text text-error text-red-500">
@@ -340,20 +233,20 @@ const index = () => {
                           )}
                         </>
                       ) : (
-                        <div className="flex flex-col">
+                        <div className="flex flex-col text-ellipsis whitespace-nowrap overflow-hidden">
                         <label htmlFor="" className="font-bold">Email</label>
                         <span>{email}</span>
                         </div>
                       )}
                     </div>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col max-md:mt-5">
                       {enableUpdate ? (
                         <>
                           <Field
                             type="text"
                             name="username"
                             placeholder="Username"
-                            className="w-[20em] px-5 py-3 outline-none border border-[#EAEAEA] rounded-md"
+                            className="w-[20em] px-5 py-3 outline-none border border-[#EAEAEA] rounded-md max-md:w-[100%] "
                           />{" "}
                           {errors.username && (
                             <label className="label">
@@ -364,7 +257,7 @@ const index = () => {
                           )}
                         </>
                       ) : (
-                        <div className="flex flex-col text-right">
+                        <div className="flex flex-col text-right max-md:text-start text-ellipsis whitespace-nowrap overflow-hidden">
                         <label htmlFor="" className="font-bold">Username</label>
                         <span>{username}</span>
                         </div>

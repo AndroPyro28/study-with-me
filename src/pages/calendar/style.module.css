@@ -9,10 +9,10 @@
 }
 
 .event__sidebar {
-    @apply w-[30vw] flex flex-col items-center text-sm ; 
+    @apply w-[30vw] flex flex-col items-center text-sm mt-10; 
 
        @media (max-width: 900px) {
         width:100vw;
-        margin-top:-50px;
+        /* margin-top:-50px; */
     }
 }

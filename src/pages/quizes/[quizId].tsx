@@ -148,8 +148,9 @@ const quizDetail = () => {
 
     return (
       <div className="h-[80vh] w-[68vw] rounded-lg bg-white shadow-xl min-h-[50vh] max-[950px]:w-[100vw]">
-        <div className="flex justify-between gap-5 p-5">
-          <div className="flex items-center justify-center rounded-full  bg-[rgb(32,77,67)] p-2 text-sm text-white">
+        <div className="flex justify-between max-sm:flex-col gap-5 p-5"
+        >
+          <div className="flex items-center justify-center rounded-full  bg-[rgb(32,77,67)] p-2 text-sm text-white max-[600px]:hidden">
             <FontAwesomeIcon
               icon={faQuestion}
               className="flex h-[30px] w-[30px] items-center justify-center text-sm font-bold"

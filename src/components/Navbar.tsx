@@ -27,7 +27,7 @@ const NavLinks = () => {
             className="mr-5 h-11 w-11 object-cover scale-150"
             alt="Flowbite Logo"
           />
-          <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
+          <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white max-[500px]:text-lg">
             Study with me
           </span>
         </a>

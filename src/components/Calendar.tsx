@@ -100,10 +100,13 @@ const Calendar = ({ currentEvents}: Props) => {
           center: "title",
           right: "dayGridMonth,timeGridWeek,timeGridDay",
         }}
+        
         validRange={{
           start: today
         }}
+        height={'100vh'}
         initialView="dayGridMonth"
+        longPressDelay={0}
         editable={true}
         selectable={true}
         selectMirror={true}

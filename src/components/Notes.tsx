@@ -74,7 +74,7 @@ const timeLeft = `0${hours}:${minutes < 10 ? `0${minutes}` : minutes}:${remainin
   return (
     <div>
       <div className="flex bg-white px-[10px] py-[20px] gap-2 items-center rounded-md"> <FontAwesomeIcon icon={faMagnifyingGlass} className="w-[40px] h-[30px]" /> <input type="text" placeholder="Search Title" className=" text-3xl w-full h-10 outline-none" value={search} onChange={( e:React.ChangeEvent<HTMLInputElement> ) => setSearch(e.target.value)}  /> </div>
-    <div className=" mt-[20px] flex h-auto  flex-col rounded-md border bg-white w-[90vw]">
+    <div className=" mt-[20px] flex h-auto  flex-col rounded-md border bg-white w-[90vw] max-[900px]:w-[100vw]">
         {openAddReviewerModal && <AddNoteModal handler={handler} />}
         {NoteTableHeader}
         {content}

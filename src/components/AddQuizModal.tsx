@@ -49,7 +49,7 @@ const AddQuizModal = ({handler}: Props) => {
       {(formikState) => {
         const {errors} = formikState
         return (
-          <Form className="absolute bottom-0 left-0 right-0 top-0 m-auto h-fit w-[35vw] rounded-md bg-white p-10"
+          <Form className="absolute bottom-0 left-0 right-0 top-0 m-auto h-fit w-[35vw] rounded-md bg-white p-10 max-[900px]:w-[50vw] max-[700px]:w-[70vw] max-[500px]:w-[100vw] max-[700px]:text-sm"
           aria-disabled={isLoading}
           >
             <FontAwesomeIcon
