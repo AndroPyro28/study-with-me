@@ -25,7 +25,6 @@ const ReviewerContent = ({ data }: Props) => {
         style={{
           width: "100%",
           height: "100vh",
-          
         }}
         
       />

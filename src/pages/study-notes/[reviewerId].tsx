@@ -28,10 +28,6 @@ const reviewerDetail = () => {
     setHasStarted(true)
   }
 
-  if(!hasStarted) {
-    <div></div>
-  }
-
   return (
     <div className={styles.reviewer}>
         {!hasStarted ? <button className="bg-white px-[20px] py-[10px] m-auto rounded-md" onClick={handleStart}>Start Review</button> : <ReviewerContent data={data!} />}
