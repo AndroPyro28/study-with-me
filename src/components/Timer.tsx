@@ -87,6 +87,7 @@ function Timer({ data }: Props) {
           style={{
             resize: 'horizontal',
             height: "75vh",
+            maxHeight:'75vh',
             background: "white",
             width: '100vw',
             maxWidth: '100%',
