@@ -11,7 +11,7 @@ import axios from "axios";
 import Loader from "./Loader";
 import { UnAuthorizeError } from "~/helper/Unauthorize.helper";
 import { env } from "~/env.mjs";
-
+import * as yup from 'yup'
 const initialValues = {
   title: "",
   file: null,
@@ -133,7 +133,7 @@ const AddNoteModal = ({handler}: Props) => {
                           </span>
                         </span>
                       </span>
-                       <input name="file"  className="hidden" accept="application/pdf,application/pptx" type="file" id="file" onChange={onUploadChange} />
+                       <input name="file"  className="hidden" type="file" id="file" onChange={onUploadChange} />
                     </label>
                   </div>{" "}
                 </div>
