@@ -133,7 +133,7 @@ const AddNoteModal = ({handler}: Props) => {
                           </span>
                         </span>
                       </span>
-                       <input name="file"  className="hidden" accept="application/pdf application/pptx" type="file" id="file" onChange={onUploadChange} />
+                       <input name="file"  className="hidden" accept="application/pdf,application/pptx" type="file" id="file" onChange={onUploadChange} />
                     </label>
                   </div>{" "}
                 </div>
