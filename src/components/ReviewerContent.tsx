@@ -35,10 +35,10 @@ const ReviewerContent = ({ data }: Props) => {
         />
       )} */}
       {ext === "pdf" ? (
-        <iframe className="w-[60vw] h-[65vh] max-[900px]:flex-col max-[900px]:w-screen" src={`https://docs.google.com/viewer?embedded=true&url=${data?.image_url}`} ></iframe>
+        <iframe className="w-[60vw] h-[100vh] max-[900px]:flex-col max-[900px]:w-screen max-[900px]:h-[65vh]" src={`https://docs.google.com/viewer?embedded=true&url=${data?.image_url}`} ></iframe>
       ) : (
         <iframe
-          className="w-[60vw] h-[65vh] max-[900px]:flex-col max-[900px]:w-screen"
+          className="w-[60vw] h-[100vh] max-[900px]:flex-col max-[900px]:w-screen max-[900px]:h-[65vh]"
           src={`https://view.officeapps.live.com/op/view.aspx?src=http%3A%2F%2Fres%2Ecloudinary%2Ecom%3A80%2Fiamprogrammer%2Fraw%2Fupload%2Fv1683728668%2Fonline-student-reviewer%2F${fileName}%2Epptx&wdSlideId=&wdModeSwitchTime=1683949969946`}
         ></iframe>
       )}

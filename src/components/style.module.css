@@ -59,10 +59,11 @@
 }
 
 .styleReview {
-    @apply flex w-screen;
+    @apply flex w-screen h-screen;
     overflow-y: auto;
     @media (max-width: 900px) {
         flex-direction: column;
+        height: auto;
     }
 }
 
