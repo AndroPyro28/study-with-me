@@ -43,18 +43,23 @@ const AddNoteModal = ({handler}: Props) => {
   })
 
   const onSubmit = async (values: NoteTypeInput, {resetForm}: any) => {
-    if(values.file) {
-      const formData = new FormData();
-      formData.append("file", values.file as any);
-      formData.append("upload_preset", "online-student-reviewer");
-      const res = await axios.post(env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL, formData,{
-        headers: { 'X-Requested-With': 'XMLHttpRequest' },
-      });
-      values.image_url = res.data.url;
-      values.image_id = res.data.public_id;
+    try {
+      if(values.file) {
+        const formData = new FormData();
+        formData.append("file", values.file as any);
+        formData.append("upload_preset", "online-student-reviewer");
+        const res = await axios.post(env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL, formData,{
+          headers: { 'X-Requested-With': 'XMLHttpRequest' },
+        });
+        values.image_url = res.data.url;
+        values.image_id = res.data.public_id;
+      }
+  
+      mutate(values)
+      resetForm(initialValues)
+    } catch (error) {
+      toast('Somehing went wrong...', {type: 'error'})
     }
-    mutate(values)
-    resetForm(initialValues)
   };
 
   return (
