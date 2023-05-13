@@ -62,7 +62,6 @@ function Timer({ data }: Props) {
     })
   }
 
-
   useLayoutEffect(() => {
     const reactQuill = document.getElementById('reactQuill');
   }, [])

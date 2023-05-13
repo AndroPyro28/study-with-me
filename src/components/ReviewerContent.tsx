@@ -8,6 +8,9 @@ interface Props {
 }
 
 const ReviewerContent = ({ data }: Props) => {
+  useEffect(() => {
+    console.log('refetching', data)
+  }, [])
   const docs = [
     {
       uri: data?.image_url!,
@@ -20,7 +23,7 @@ const ReviewerContent = ({ data }: Props) => {
         data?.image_url && <DocViewer
         
         documents={docs}
-        pluginRenderers={DocViewerRenderers}
+        // pluginRenderers={DocViewerRenderers}
         className="h-[50vh] w-[50vw]"
         style={{
           width: "100%",
@@ -31,7 +34,6 @@ const ReviewerContent = ({ data }: Props) => {
         
       />
       }
-      
       <Timer data={data}/>
     </div>
   );
