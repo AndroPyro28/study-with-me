@@ -25,7 +25,9 @@ const reviewerDetail = () => {
   if(isError) return <div>Something went wrong...</div>
   
   const handleStart = () => {
-    setHasStarted(true)
+    setTimeout(() => {
+      setHasStarted(true)
+    }, 1000)
   }
 
   return (
