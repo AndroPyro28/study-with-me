@@ -15,20 +15,8 @@ const ReviewerContent = ({ data }: Props) => {
       // uri: "https://res.cloudinary.com/iamprogrammer/image/upload/v1683084884/tg4x6kp7drqqk7bhxd3e.pdf",
     }, // Remote file
   ];
-
   const ext = data?.image_url?.split(".")[3];
   const fileName = data?.image_url?.split("/")[8]?.split(".")[0];
-
-  useEffect(() => {
-    console.log(data?.image_url?.split("/")[8]?.split(".")[0]);
-    console.log(ext);
-  }, []);
-  // useLayoutEffect(() => {
-  //   if(viewerRef.current) {
-  //     console.log(viewerRef.current)
-  //   }
-  //   },[viewerRef.current])
-
   return (
     <div className={styles.styleReview}>
       {/* {data?.image_url && (
@@ -47,7 +35,7 @@ const ReviewerContent = ({ data }: Props) => {
         />
       )} */}
       {ext === "pdf" ? (
-        <iframe className="w-[60vw] h-[65vh] max-[900px]:flex-col max-[900px]:w-screen" src={data?.image_url!}></iframe>
+        <iframe className="w-[60vw] h-[65vh] max-[900px]:flex-col max-[900px]:w-screen" src={`https://docs.google.com/viewer?embedded=true&url=${data?.image_url}`} ></iframe>
       ) : (
         <iframe
           className="w-[60vw] h-[65vh] max-[900px]:flex-col max-[900px]:w-screen"
