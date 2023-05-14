@@ -148,7 +148,7 @@ const quizDetail = () => {
     };
 
     return (
-      <div className="h-[80vh] w-[68vw] rounded-lg bg-white shadow-xl min-h-[50vh] max-[950px]:w-[100vw]">
+      <div className="h-[80vh] w-[68vw] rounded-lg bg-white shadow-xl min-h-[70vh] max-[950px]:w-[100vw] max-[950px]:h-[100%]">
         <div className="flex justify-between max-sm:flex-col gap-5 p-5"
         >
           <div className="flex items-center justify-center rounded-full  bg-[rgb(32,77,67)] p-2 text-sm text-white max-[600px]:hidden">
@@ -225,7 +225,7 @@ const quizDetail = () => {
         )}
 
         <button
-          className="mx-auto mt-10 flex w-fit self-center rounded-md bg-[rgb(55,148,83)] px-[20px] py-[10px] text-white"
+          className="mx-auto mt-10 mb-10 flex w-fit self-center rounded-md bg-[rgb(55,148,83)] px-[20px] py-[10px] text-white"
           onClick={insertQuestionaire}
           disabled={isLoadingAdd}
         >
@@ -279,7 +279,7 @@ const quizDetail = () => {
 
 
     return (
-      <div className="flex h-[80vh] w-[30vw] flex-col rounded-lg bg-white py-[20px] text-black shadow-xl max-[950px]:w-[100vw]">
+      <div className="flex h-[80vh] w-[30vw] flex-col rounded-lg bg-white py-[20px] text-black shadow-xl max-[950px]:w-[100vw] overflow-y-auto">
         
         <h1 className="py-5 text-center text-4xl font-bold">
           Questionaires Created
@@ -397,7 +397,7 @@ const quizDetail = () => {
 
   if (!data?.posted && !data?.isSubmitted) {
     return (
-      <div className="flex h-[95vh] items-center gap-5 overflow-hidden bg-[rgb(222,223,232)] px-5 max-[950px]:flex-col max-[950px]:h-[100vh]">
+      <div className="flex h-[95vh] items-center gap-5 overflow-hidden bg-[rgb(222,223,232)] px-5 max-[950px]:flex-col max-[950px]:h-[100%]">
           <QuestionaireCreateContainer />
           {displayConfirmModal && (
           <ConfirmModal handleDisplayModal={handleDisplayModal} />
