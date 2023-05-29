@@ -37,11 +37,16 @@ const Quizes = ({handler, openAddQuizModal}: Props) => {
   const router = useRouter();
   const context = api.useContext()
   const {mutate: mutateDelete} = api.quiz.deleteQuiz.useMutation({
-    onSettled: () => {
-      context.quiz.getAllQuiz.invalidate()
+    onMutate: (id) => {
+      const prevData = context.quiz.getAllQuiz.getData();
+      context.quiz.getAllQuiz.setData(undefined, (old) => {
+        return old?.filter((q) => q.id != id)
+      })
+      return {prevData}
     },
-    onError: () => {
+    onError: (err, newQuiz, ctx) => {
       toast('Something went wrong...', {type: 'error'})
+      context.quiz.getAllQuiz.setData(undefined, ctx?.prevData)
     },
     onSuccess: () => {
       toast('Quiz Deleted', {type: 'success'})
