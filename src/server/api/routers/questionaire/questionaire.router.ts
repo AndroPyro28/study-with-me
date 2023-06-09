@@ -16,5 +16,4 @@ export const questionaireRouter = createTRPCRouter({
     deleteOneQuestionaireByQuizId: privateProcedure.input(deleteQuestionaireDto).mutation(async({input, ctx}) => {
         return await deleteOneQuestionaire(input)
     }),
-    
 });
