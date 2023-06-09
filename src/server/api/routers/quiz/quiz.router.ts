@@ -23,21 +23,25 @@ export const quizRouter = createTRPCRouter({
       const quiz = createOneQiuz(input, ctx.currentUser.id);
       return quiz;
     }),
+
   getAllQuiz: privateProcedure.query(async ({ ctx }) => {
     const quizes = findAllQuizByUserId(ctx.currentUser.id);
     return quizes;
   }),
+  
   postQuiz: privateProcedure
     .input(z.string().cuid())
     .mutation(async ({ ctx, input }) => {
       return postQUiz(input, ctx.currentUser.id);
     }),
+
   getQuizById: privateProcedure
     .input(z.string().cuid())
     .query(async ({ ctx, input }) => {
       const quiz = await getQuizById(input, ctx.currentUser.id);
       return quiz;
     }),
+
   quizMarkSubmitted: privateProcedure
     .input(submitAnswerDto)
     .mutation(async ({ ctx, input }) => {
@@ -73,6 +77,7 @@ export const quizRouter = createTRPCRouter({
 
       return quizSubmitted;
     }),
+    
     deleteQuiz: privateProcedure.input(z.string().cuid()).mutation(async ({input, ctx}) => {
       const deletedQuiz = await deleteQuiz(input, ctx.currentUser.id);
       console.log(deletedQuiz)
