@@ -1,10 +1,12 @@
 import { faNoteSticky } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddQuizModal from "~/components/AddQuizModal";
 import Quizes from "~/components/Quizes";
 import useAuth from "~/hooks/useAuth";
 import { api } from "~/utils/api";
+import {io} from 'socket.io-client'
+
 const index = () => {
   useAuth(); 
   const [openAddQuizModal, setOpenAddQuizModal] = useState(false)
@@ -13,6 +15,15 @@ const index = () => {
     setOpenAddQuizModal(prev => !prev)
   }
   
+useEffect(() => {
+  const socket = io('https://study-with-me-atf3.vercel.app')
+
+  socket.emit('hello', {})
+  socket.on('hello_back', () => {
+    console.log('hello back from server')
+  })
+ }, [])
+
   return (
     <div className="flex flex-col items-center">
 
