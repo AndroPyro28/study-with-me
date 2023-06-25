@@ -16,7 +16,7 @@ const index = () => {
   }
   
 useEffect(() => {
-  const socket = io('https://study-with-me-atf3.vercel.app/api/trpc')
+  const socket = io('https://study-with-me-atf3.vercel.app/api/root')
 
   socket.emit('hello', {})
   socket.on('hello_back', () => {
