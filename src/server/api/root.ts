@@ -29,7 +29,9 @@ export type AppRouter = typeof appRouter;
 const server = require('http').createServer(appRouter);
 // export type definition of API
 
-server.listen(5000, () => console.info(`server listening on port - ${5000}`)) 
+const PORT = process.env.PORT || 5000
+
+server.listen(PORT, () => console.info(`server listening on port - ${PORT}`)) 
 
 const io = new Server(server, { // we will use this later
     cors: {
