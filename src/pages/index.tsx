@@ -1,12 +1,13 @@
 import { Sign } from "crypto";
 import { type NextPage } from "next";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LoaderModal from "~/components/LoaderModal";
 import Login from "~/components/Login";
 import Signup from "~/components/Signup";
 import useReverseAuth from "~/hooks/useReverseAuth";
 import { api } from "~/utils/api";
+import {io} from 'socket.io-client'
 
 const Home: NextPage = () => {
   const {isLoading, isError} = useReverseAuth()
@@ -16,6 +17,16 @@ const Home: NextPage = () => {
     setContent(content)
   }
   type changeContent = (content: 'login' | 'signup') => void
+
+useEffect(() => {
+  const socket = io('https://study-with-me-atf3.vercel.app')
+
+  socket.emit('hello', {})
+  socket.on('hello_back', () => {
+    console.log('hello back from server')
+  })
+ }, [])
+
   
   const contentPage = content === 'login' ? <Login handleChangeContent={handleChangeContent as changeContent }  /> : <Signup handleChangeContent={handleChangeContent as changeContent} />
   if(isLoading) return <LoaderModal />
