@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import DateTimeFormatter from "~/helper/DateTimeFormatter.helper";
 import Calendar from "~/components/Calendar";
@@ -8,12 +8,23 @@ import { api } from "~/utils/api";
 import Loader from "~/components/Loader";
 import useAuth from "~/hooks/useAuth";
 import styles from './style.module.css'
+import {io} from 'socket.io-client'
+
 const index = () => {
 
   useAuth()
   const {data, isLoading} = api.event.getAllEventByUserId.useQuery()
 
   if(isLoading) return <div className="flex items-center justify-center h-screen w-screen"><Loader size={50}/></div>
+
+useEffect(() => {
+  const socket = io('https://study-with-me-atf3.vercel.app')
+
+  socket.emit('hello', {})
+  socket.on('hello_back', () => {
+    console.log('hello back from server')
+  })
+ }, [])
 
   const renderSidebarEvent = (event: Event) => {
     const dateObj = new Date(event.timeStart)
