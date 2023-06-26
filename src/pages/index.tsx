@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
   
 useEffect(() => {
-  const socket = io('https://study-with-me-atf3.vercel.app')
+  const socket = io('https://study-with-me-atf3.vercel.app/api')
   socket.emit('hello', 'andro')
  }, [])
   
