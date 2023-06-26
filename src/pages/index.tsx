@@ -7,7 +7,7 @@ import Login from "~/components/Login";
 import Signup from "~/components/Signup";
 import useReverseAuth from "~/hooks/useReverseAuth";
 import { api } from "~/utils/api";
-import {io} from 'socket.io-client'
+import {io, } from 'socket.io-client'
 
 const Home: NextPage = () => {
   const {isLoading, isError} = useReverseAuth()
