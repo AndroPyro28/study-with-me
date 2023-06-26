@@ -13,13 +13,11 @@ const Home: NextPage = () => {
   const {isLoading, isError} = useReverseAuth()
   const [content, setContent] = useState<'login' | 'signup'>('login')
 
-  useEffect(() => {
   
 useEffect(() => {
   const socket = io('https://study-with-me-atf3.vercel.app')
   socket.emit('hello', 'andro')
  }, [])
-  }, [])
   
   const handleChangeContent = (content: 'login' | 'signup') => {
     setContent(content)
