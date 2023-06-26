@@ -27,10 +27,10 @@ export const appRouter = createTRPCRouter({
 export type AppRouter = typeof appRouter;
 
 const server = require('http').createServer(appRouter);
-server.use(cors({
-  origin:"*",
-  methods: ["GET", "POST", "DELETE", "PUT", "PATCH"]
-}))
+// server.use(cors({
+//   origin:"*",
+//   methods: ["GET", "POST", "DELETE", "PUT", "PATCH"]
+// }))
 
 // export type definition of API
 
