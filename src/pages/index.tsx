@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
   
 useEffect(() => {
-  const socket = io('https://study-with-me-atf3.vercel.app/api')
+  const socket = io('https://study-with-me-atf3.vercel.app/socket.io/?EIO=4&transport=polling&t=OZsimno')
   socket.emit('hello', 'andro')
  }, [])
   
