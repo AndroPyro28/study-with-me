@@ -29,11 +29,11 @@ export type AppRouter = typeof appRouter;
 const server = require('http').createServer(appRouter);
 // export type definition of API
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3001
 
-server.listen(PORT, () => console.info(`server listening on port - ${PORT}`)) 
+server.listen(PORT, () => console.info(`server listening on port - ${PORT}`))
 
-const io = new Server(server, { // we will use this later
+const io = new Server(server, {
     cors: {
         origin: "*",
         methods: ["GET", "POST", "DELETE", "PUT", "PATCH"]
@@ -45,10 +45,11 @@ console.log(io)
 io.on('connection', (socket) => {
   console.log('connected socket-------------------------------------------')
 
-  socket.on('hello', () => {
-    console.log('hello world')
+  socket.on('hello', (param) => {
+    console.log('hello world from ', param)
     socket.emit('hello_back')
   })
+
   socket.on('disconnect', () => {
     console.log('disconnected')
   })
