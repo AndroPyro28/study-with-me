@@ -27,6 +27,8 @@ export const appRouter = createTRPCRouter({
 export type AppRouter = typeof appRouter;
 
 const server = require('http').createServer(appRouter);
+
+
 // server.use(cors({
 //   origin:"*",
 //   methods: ["GET", "POST", "DELETE", "PUT", "PATCH"]
@@ -36,13 +38,17 @@ const server = require('http').createServer(appRouter);
 
 const PORT = process.env.PORT || 3001
 
-server.listen(PORT, () => console.info(`server listening on port - ${PORT}`))
+server.listen(PORT, () => {
+  console.info(`server listening on port - ${PORT}`)
+})
 
 const io = new Server(server, {
     cors: {
         origin: "*",
         methods: ["GET", "POST", "DELETE", "PUT", "PATCH"]
-    }
+    },
+    path: "/api/socket_io",
+    addTrailingSlash: false
 })
 
 console.log(io)

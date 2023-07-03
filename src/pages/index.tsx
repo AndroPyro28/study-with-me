@@ -15,7 +15,11 @@ const Home: NextPage = () => {
 
   
 useEffect(() => {
-  const socket = io('https://study-with-me-atf3.vercel.app')
+  const socket = io('/api/trpc', {
+    path: "/api/socket_io",
+    addTrailingSlash: false
+  })
+
   console.log(socket)
   socket.emit('hello', 'andro')
  }, [])

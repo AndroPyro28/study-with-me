@@ -15,6 +15,7 @@
  * These allow you to access things when processing a request, like the database, the session, etc.
  */
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
+import cors from 'cors'
 
 import { prisma } from "~/server/db";
 
@@ -46,11 +47,6 @@ export const createTRPCContext = async (_opts: CreateNextContextOptions) => {
 
     const { req, res } = _opts
 
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Request-Method', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
-    res.setHeader('Access-Control-Allow-Headers', '*');
-    
     return {
       prisma,
       req,
@@ -87,6 +83,7 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
     };
   },
 });
+
 
 /**
  * 3. ROUTER & PROCEDURE (THE IMPORTANT BIT)
