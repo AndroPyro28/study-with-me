@@ -15,9 +15,9 @@ const Home: NextPage = () => {
 
   
 useEffect(() => {
-  const socket = io('https://dark-picture-production.up.railway.app', {
-    path: "/api/socket_io",
-    addTrailingSlash: false
+  const socket = io('https://dark-picture-production.up.railway.app/api/trpc', {
+    // path: "/api/socket_io",
+    // addTrailingSlash: false
   })
 
   console.log(socket)
