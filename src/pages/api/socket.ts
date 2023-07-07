@@ -17,6 +17,7 @@ const ioHandler = (req: NextApiRequest, res: NextApiResponseWithSocket) => {
       socket.on("hello", (msg) => {
         socket.emit("hello", msg);
       });
+      
       socket.on("disconnect", () => {
         console.log("A user disconnected");
         socket.broadcast.emit("userServerDisconnection", socket.id);
