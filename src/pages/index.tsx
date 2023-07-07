@@ -37,4 +37,5 @@ useEffect(() => {
       </main>
   );
 };
+
 export default Home;
