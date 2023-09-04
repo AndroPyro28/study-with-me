@@ -20,7 +20,6 @@ useEffect(() => {
     // addTrailingSlash: false
   })
 
-  console.log(socket)
   socket.emit('hello', 'andro')
  }, [])
   
